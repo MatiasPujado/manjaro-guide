@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE instance-profile SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 <instance-profile id="mg"
-  name="Manjaro Guide"
-  start-page="">
+                  name="Manjaro Guide"
+                  start-page="first-steps.md">
+  <toc-element topic="first-steps.md"/>
+  <toc-element topic="system-setup.md"/>
+  <toc-element topic="home-servers.md"/>
+  <toc-element topic="terminal.md"/>
+  <toc-element topic="references.md"/>
 </instance-profile>
