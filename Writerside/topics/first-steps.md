@@ -1,21 +1,5 @@
 # First Steps
 
-Create a backup of the list of packages installed prior to SSD format, and save the output in a text file.
-
-## Backup installed packages {collapsible="true"}
-
-From official repository:
-
-```Bash
-pacman -Qqen > pkglist
-```
-
-From Arch User Repository (AUR)
-
-```Bash
-pacman -Qqem > aur-pkglist
-```
-
 ## On a fresh install
 
 Update mirrors database and upgrade the system.
@@ -45,18 +29,16 @@ sudo pacman -S --needed base-devel wget curl nano mercurial make dnsmasq vim dia
 sudo pacman -S --needed gparted grsync corectrl easyeffects font-manager shotwell terminator discord conky transmission-gtk frotz-ncurses bitwarden filezilla paperwork openshot gedit netstat-nat manjaro-pipewire pipewire-jack pipewire-v4l2 pipewire-docs realtime-privileges wireplumber tree vsftpd dconf-editor git git-sizer git-repair git-revise git-filter-repo zsh zsh-doc lsd awesome-terminal-fonts nerd-fonts tmux
 ```
 
-## Enable TRIM
+## TRIM (only on SSD)
 
-> **Highlight important information**
+> **Note**
 >
-> If your root partition has been installed on SSD, enabling TRIM is one thing you
-> need to do after installing Manjaro. TRIM helps to clean blocks in your SSD and
-> extend the lifespan of your SSD.
+> It enables an operating system (OS) to inform a NAND flash solid-state drive (SSD) which data blocks it can erase because they are no longer in use. The use of this command can improve the performance of writing data to SSDs and contribute to longer life for the SSD.
 >
 {style="note"}
 
 ```Bash
-sudo systemctl enable fstrim.timer
+sudo systemctl enable --now fstrim.timer
 systemctl status fstrim.timer
 ```
 
