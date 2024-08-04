@@ -16,8 +16,10 @@ Under **/org/gnome/nautilus/list-view/default-column-order** add as custom value
 
 ## System Environment Variables {collapsible="true"}
 
+Adapt the following example to your needs and add it to the `/etc/environment` file.
+
 ```Bash
-sudo gedit /etc/environment
+sudo vim /etc/environment
 ```
 
 ```text
@@ -96,7 +98,18 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin:/usr/games:/us
 
 ## Set system-wide permissions {collapsible="true"}
 
-> **Highlight important information**
+<br/>
+
+> **Warning**
+>
+> Be careful when editing the sudoers file. Incorrect syntax can lock you out of your system. Always use the `visudo` command to edit the sudoers file. This command checks the
+syntax of the file before saving it.
+>
+{style="warning"}
+
+<br/>
+
+> **Note**
 >
 >If visudo does not open with the desired text editor, look for this line in /etc/sudoers and comment it out:
 >
@@ -109,6 +122,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin:/usr/games:/us
 >```
 >
 {style="note"}
+
+<br/>
+
+This is my sudoers file, it is not ideal, but it suits my needs. **Do not copy it blindly and adapt it to your needs.**
+
+<br/>
 
 ```Bash
 sudo visudo -f /etc/sudoers.d/sudoers
@@ -249,6 +268,7 @@ admin ALL=(ALL:ALL) NOPASSWD: ALL
 matias ALL=(ALL:ALL) NOPASSWD: ALL
 coder ALL=(ALL:ALL) NOPASSWD: ALL
 ```
+
 ## Setup users accounts
 
 ### Create new groups
@@ -260,6 +280,8 @@ sudo groupadd sudo
 
 ### Add user to groups
 
+Adapt the following example to your needs.
+
 ```Bash
 sudo usermod -aG sudo,dev,matias,coder,admin,audio,input,lp,storage,users,network,power,realtime coder
 sudo usermod -aG sudo,dev,matias,coder,admin,audio,input,lp,storage,users,network,power,realtime matias
@@ -268,12 +290,84 @@ sudo usermod -aG sudo,dev,matias,coder,admin,audio,input,lp,storage,users,networ
 
 ### Change users main group
 
+To keep my accounts organized, I change the main group of the users to the `dev` group.
+
 ```Bash
 sudo usermod -g dev coder
 sudo usermod -g dev matias
 sudo usermod -g dev admin
 ```
 
+## Mount partitions
 
+This section is about mounting partitions in the `/etc/fstab` file. An alternative is to use the `Disks` application, especially if they weren't included during the OS installation
+process.
 
+First, we need to identify the partitions we want to mount. Use the `lsblk` command to list all the block devices:
 
+```Bash
+lsblk
+```
+
+Then we will use the `blkid` command to get the UUID of the partition:
+
+```Bash
+sudo blkid
+```
+
+Now we can edit the `/etc/fstab` file:
+
+```Bash
+sudo vim /etc/fstab
+```
+
+<br/>
+
+> **Note**
+>
+> In the last line of the '/etc/fstab' file, I am mounting a shared folder from another Linux system in my network.
+>
+{style="note"}
+
+<br/>
+
+This is an example of how to add a partition to the `/etc/fstab` file:
+
+```text
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# systemd generates mount units based on this file, see systemd.mount(5).
+# Please run 'systemctl daemon-reload' after making changes here.
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/nvme0n1p3 during installation
+UUID=2a1db98a-de36-4491-b799-e7fd9607498a /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/nvme0n1p1 during installation
+UUID=5F4A-0896  /boot/efi       vfat    umask=0077      0       1
+# /home was on /dev/nvme0n1p4 during installation
+UUID=66afd3f0-a5da-4c6e-a30d-f3f20fa02e83 /home           ext4    defaults        0       2
+# swap was on /dev/nvme0n1p2 during installation
+UUID=f7958b58-76ef-4824-9b3f-7c2131390585 none            swap    sw              0       0
+
+#
+# LVM
+# Media_VG
+# MediaCenter with UUID="daf6302c-dd08-4e2e-a7f1-24a9511bbf93"
+UUID="daf6302c-dd08-4e2e-a7f1-24a9511bbf93"	/media/MediaCenter	ext4	defaults	0	0
+# VMs with UUID="a28a5163-da8c-4791-843d-5f5fced9b4db"
+UUID="a28a5163-da8c-4791-843d-5f5fced9b4db"	/media/VMs	ext4	defaults	0	0
+#
+#Standard Partitions
+# Games with UUID="a90d6e24-6af9-4b14-937e-b359614fb787"
+UUID="a90d6e24-6af9-4b14-937e-b359614fb787"	/media/Games	ext4	defaults	0	0
+# Vault with UUID="a9be72c3-3142-43f8-a419-ca6b2ff52c0f"
+/dev/sdc1	/media/Vault	ext4	defaults	0	0
+# Work with UUID="5e255cc3-1733-45e0-a709-a0174a417f6b"
+/dev/sdd1	/media/Work	ext4	defaults	0	0
+# Dell Shared-Folder
+\\192.168.100.100\SharedFolder  /media/Dell  cifs  credentials=/etc/win-credentials,uid=1001,gid=1001,dir_mode=0774,file_mode=0774 0       0
+```

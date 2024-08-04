@@ -1,11 +1,41 @@
 # Home Servers
 
+## Printers {collapsible="true"}
+
+### Brother DCP-1617NW
+
+Install the necessary packages and other dependencies:
+
+```Bash
+sudo pacman -S --needed cups manjaro-printer gtk2 sane lib32-glibc system-config-printer
+```
+
+Then, install the Brother DCP-1617NW drivers:
+
+```Bash
+sudo pamac install brscan4 brother-dcp1610w brother-lpr-drivers-common
+```
+
+Add the printer to the system:
+
+```Bash
+sudo brsaneconfig4 -a name=Brother model="DCP-1617NW" ip=192.168.100.150
+```
+
 ## Plex Media Server {collapsible="true"}
 
 Use the following command to install Plex Media Server:
 
 ```Bash
 sudo yay -S plexmediaserver
+```
+
+### Add users to Plex group
+
+```Bash
+sudo usermod -aG plex admin
+sudo usermod -aG plex matias
+sudo usermod -aG plex coder
 ```
 
 ### Enable and start the service
@@ -27,7 +57,7 @@ ReadWritePaths=/var/lib/plex /tmp
 MemoryMax=4G
 ```
 
-### Fix max number of libraries for non-root users
+### Fix max amount of libraries for non-root users
 
 ```Bash
 sudo gedit /etc/sysctl.d/40-max-user-watches.conf

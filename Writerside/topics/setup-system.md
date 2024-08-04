@@ -25,11 +25,10 @@ pacman -Qqem > ~/aur-pkglist
 > **Advise**
 >
 > Use live distros to check your system and setup your HDDs and/or SSDs. The one I recommend is [Parted Magic](https://partedmagic.com/).
-> You can get it from [here](https://mega.nz/folder/l6ZR1Sha).
 >
 {style="note"}
 
-Once you’re ready to start formatting your drives, you can use the following steps:
+Once you are ready to start formatting your drives, you can use the following steps:
 
 ### 1 – Boot up from the USB Live distro {collapsible="true"}
 
@@ -160,8 +159,8 @@ In my case I decided to follow the golden rule, my RAM is 32 GB, so I created a 
 
 <br/>
 
-Once the partition table is created, and you have a well-defined partition scheme, you can start creating the partitions you need. In this example, I will create a new partition for
-the OS by right-clicking on the unallocated space and selecting **New**.
+Once the partition table is created, and you have a well-defined partition scheme, you can start creating the partitions you need. In this example, I will create a new partition
+for the OS by right-clicking on the unallocated space and selecting **New**.
 
 <br/>
 
@@ -180,8 +179,16 @@ and finally, click on **Add**.
 
 ### 5 – Install the OS {collapsible="true"}
 
+> **Note**
+>
+> A recommended Firmware setting is to turn off **TPM**, depending on your device, disabling **Secure Boot** might be also needed.
+>
+{style="note"}
+
+<br/>
+
 In this example, I will install Manjaro Linux. Install the OS in a thumb drive and boot up from it. The next screen capture shows the welcome screen. If your device has **AMD**
-processors, select the **Free** option. But if your device has **Intel/Nvidia** processors, select the **Non-Free** option.
+processors, select the **Open Source Drivers** option. But if your device has **Intel/Nvidia** processors, select the **Proprietary Drivers** option.
 
 <br/>
 
@@ -224,9 +231,61 @@ Now, select the **Manual Partitioning** option. Here, we’ll assign the partiti
 
 <br/>
 
-<br/>
+![Mount Point](Manjaro_Mount_Point.png "Mount Point")
 
 <br/>
 
+> **Warning**
+>
+> **Administrator Account** is the root user. The most powerful account in your system, you should be very careful with it. Pick a strong password and keep it safe.
+>
+> **Only** tick the option *"User the same password for administrator account"* if you know what you are doing, and **you are aware** of the risks that come with it.
+>
+{style="warning"}
+
 <br/>
 
+It is highly recommended to create a user account. Fill in the form with the information required. From top to bottom, in the first field you should type your **Full Name**, in the
+second field you type your **Username**, in the third field you type your **Computer Name**, and in the last two fields you have to type your **Password**.
+
+<br/>
+
+![Create User Account](Manjaro_Create_User_Account.png "Create User Account")
+
+<br/>
+
+Select the **Office Suite** you want to install. In this example, I selected **LibreOffice**.
+
+<br/>
+
+![Pick Office Suite](Manjaro_Office.png "Pick Office Suite")
+
+<br/>
+
+Review the installation summary, make sure everything is the way you want it to be, and click on **Install**.
+
+<br/>
+
+![Summary](Manjaro_Summary.png "Summary")
+
+<br/>
+
+Confirm the installation by clicking on **Install Now**.
+
+<br/>
+
+![Confirm Installation](Manjaro_Confirm_Install.png "Confirm Installation")
+
+<br/>
+
+The installation process will start. It will take some time, so be patient. Once it is done, you can reboot and remove the thumb drive.
+
+<br/>
+
+![Installing Manjaro](Manjaro_Installiing.png "Installing Manjaro")
+
+<br/>
+
+**Congratulations!** You have successfully installed Manjaro Linux.
+
+<br/>
