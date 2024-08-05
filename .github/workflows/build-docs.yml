@@ -27,8 +27,8 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.ACTIONS_RUNTIME_TOKEN }}
 
-      - name: Create artifacts directory
-        run: mkdir -p artifacts
+      - name: Ensure docs directory exists
+        run: mkdir -p docs
 
       - name: Build Writerside docs using Docker
         uses: JetBrains/writerside-github-action@v4
@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docs
-          path: artifacts/${{ env.ARTIFACT }}
+          path: docs/${{ env.ARTIFACT }}
           if-no-files-found: error
           retention-days: 7
           compression-level: 0
