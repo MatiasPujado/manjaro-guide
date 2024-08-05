@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="199.998" height="200.008">
+  <svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 199.99799 200.008" id="SvgjsSvg1003" sodipodi:docname="logo.svg" width="199.998" height="200.008" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)">
+  <defs id="SvgjsDefs1002"/>
+  
+  <path d="M 18.182,0.004 C 8.109,0.004 0,8.1131 0,18.186 v 163.64 c 0,10.073 8.1091,18.182 18.182,18.182 H 54.546 V 54.558 h 72.727 V 0.013 Z m 127.27,0 v 200 h 36.364 c 10.073,0 18.182,-8.1091 18.182,-18.182 V 18.182 C 199.998,8.109 191.8889,0 181.816,0 Z M 72.725,72.731 v 127.27 H 127.27 V 72.731 Z" fill="#35bfa4" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="9.0909" style="paint-order:stroke fill markers" id="SvgjsPath1000"/>
+</svg>
+  <style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+</style>
+</svg>

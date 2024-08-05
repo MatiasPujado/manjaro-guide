@@ -271,6 +271,9 @@ export PATH=$PATH:$HOME/.console-ninja/.bin
 # export WINEARCH=win32
 # export WINEPREFIX=~/.wine32
 
+# Ruby - Jekyll
+export PATH=$PATH:/home/matias/.local/share/gem/ruby/3.0.0/bin
+
 ###################################################################
 ```
 
