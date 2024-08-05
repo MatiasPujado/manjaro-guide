@@ -64,6 +64,9 @@ jobs:
       - name: Unzip artifact
         run: unzip -O UTF-8 -qq ${{ env.ARTIFACT }} -d dir
 
+      - name: Move extracted files
+        run: mv dir/github-pages/artifact/webHelpMG2-all/* dir/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
