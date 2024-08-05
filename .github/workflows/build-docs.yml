@@ -1,108 +1,56 @@
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Deploy Jekyll Site to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
-
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-env:
-  INSTANCE: Writerside/mg
-  ARTIFACT: webHelpMG2-all.zip
-  DOCKER_VERSION: 241.18775
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-          token: ${{ secrets.ACTIONS_RUNTIME_TOKEN }}
+          node-version: '16'
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ruby-version: '3.0'
 
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
+      - name: Install Jekyll and Bundler
+        run: |
+          gem install jekyll -v 4.3.3
+          gem install bundler
+
+      - name: Build Site
+        run: |
+          bundle install
+          bundle exec jekyll build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4.3.5
         with:
-          source: ./
-          destination: ./_site
-
-      - name: Ensure docs directory exists
-        run: mkdir -p docs
-
-#      - name: Install Ruby and Jekyll
-#        run: |
-#          sudo apt-get update
-#          sudo apt-get install -y ruby-full build-essential zlib1g-dev libffi-dev
-#          gem install bundler
-#          gem install ffi -v '1.17.0'
-#          bundle config set --local path 'vendor/bundle'
-#          bundle install --jobs 4 --retry 3
-#
-#      - name: Build Jekyll site
-#        run: bundle exec jekyll build -d docs
-
-      - name: Build Writerside docs using Docker
-        uses: JetBrains/writerside-github-action@v4
-        with:
-          instance: ${{ env.INSTANCE }}
-          artifact: ${{ env.ARTIFACT }}
-          docker-version: ${{ env.DOCKER_VERSION }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs
-          path: docs/${{ env.ARTIFACT }}
-          if-no-files-found: error
-          retention-days: 7
-          compression-level: 0
-          overwrite: true
-
-  deploy:
-    if: ${{ github.event_name == 'pull_request' && github.base_ref == 'refs/heads/main' }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docs
-
-      - name: Unzip artifact
-        run: unzip -O UTF-8 -qq ${{ env.ARTIFACT }} -d dir
-
-      - name: Move extracted files
-        run: mv dir/artifact/* dir/
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: dir
+          name: jekyll-site
+          path: _site/
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4.0.4
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          github_token: ${{ secrets.ACTIONS_RUNTIME_TOKEN }}
+          branch: gh-pages
+          folder: _site
