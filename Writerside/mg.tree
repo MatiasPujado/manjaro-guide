@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+<instance-profile id="mg"
+                  name="Manjaro Guide"
+                  start-page="setup-system.md">
+  <toc-element topic="setup-system.md"/>
+  <toc-element topic="first-steps.md"/>
+  <toc-element topic="setup-manjaro.md"/>
+  <toc-element topic="terminal.md"/>
+  <toc-element topic="audio.md"/>
+  <toc-element topic="gnome-extensions.md"/>
+  <toc-element topic="utilities.md"/>
+  <toc-element topic="graphics.md"/>
+  <toc-element topic="apps.md"/>
+  <toc-element topic="dev-tools.md"/>
+  <toc-element topic="gaming.md"/>
+  <toc-element topic="flatpak-apps.md"/>
+  <toc-element topic="home-servers.md"/>
+  <toc-element topic="network.md"/>
+  <toc-element topic="version-control.md"/>
+  <toc-element topic="linux-kernel.md"/>
+  <toc-element topic="solutions-archive.md"/>
+  <toc-element topic="references.md"/>
+</instance-profile>
