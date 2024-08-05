@@ -1,0 +1,5 @@
+# .actionlint.yaml
+rules:
+  shellcheck: true
+  pyflakes: true
+  # Add or disable other rules as needed
