@@ -27,9 +27,6 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.ACTIONS_RUNTIME_TOKEN }}
 
-      - name: Create artifacts directory
-        run: mkdir -p artifacts
-
       - name: Ensure docs directory exists
         run: mkdir -p docs
 
