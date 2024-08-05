@@ -52,8 +52,60 @@ GitHub CLI brings GitHub to your terminal. It enables you to perform many of the
 Act is a tool that runs your GitHub Actions locally. It is a single binary that is straightforward to install and run.
 
 ```Bash
-sudo pacman -S --needed act actionlint shellcheck python-pyflakes python-dotenv github-cli
+sudo pacman -S --needed act actionlint shellcheck python-pyflakes python-dotenv github-cli ruby
 ```
+
+#### Jekyll
+
+Jekyll is a simple, blog-aware static site generator that is ideal for personal, project, or organization sites. It is written in Ruby and requires the RubyGems package manager.
+
+```Bash
+gem install jekyll bundler
+```
+
+Export to PATH:
+
+```Bash
+export PATH=$PATH:/home/matias/.local/share/gem/ruby/3.0.0/bin
+```
+
+Verify installed versions:
+
+```Bash
+jekyll -v
+bundler -v
+```
+
+At the root of the project create a `Gemfile` with the following content:
+
+```Bash
+source 'https://rubygems.org'
+gem 'jekyll'
+gem 'bundler'
+```
+
+Then run:
+
+```Bash
+bundle config set --local path 'vendor/bundle'
+bundle install
+```
+
+Avoid using sudo when installing gems. If you encounter permission errors, you can use the `--user-install` flag.
+
+Build the Jekyll site:
+
+```Bash
+bundle exec jekyll build
+```
+
+Serve the Jekyll site:
+
+```Bash
+bundle exec jekyll serve
+```
+
+Now, go to `http://localhost:4000` to see the site.
 
 ## Keyring
 

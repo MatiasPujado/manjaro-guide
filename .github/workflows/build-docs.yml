@@ -1,80 +1,56 @@
-name: Build and Publish Documentation
+name: Deploy Jekyll Site to GitHub Pages
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
-      - "main"
-      - "develop"
+      - main
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
   pages: write
-
-env:
-  INSTANCE: Writerside/mg
-  ARTIFACT: webHelpMG2-all.zip
-  DOCKER_VERSION: 241.18775
+  id-token: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-          token: ${{ secrets.ACTIONS_RUNTIME_TOKEN }}
+          node-version: '16'
 
-      - name: Ensure docs directory exists
-        run: mkdir -p docs
-
-      - name: Build Writerside docs using Docker
-        uses: JetBrains/writerside-github-action@v4
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          instance: ${{ env.INSTANCE }}
-          artifact: ${{ env.ARTIFACT }}
-          docker-version: ${{ env.DOCKER_VERSION }}
+          ruby-version: '3.0'
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Install Jekyll and Bundler
+        run: |
+          gem install jekyll -v 4.3.3
+          gem install bundler
+
+      - name: Build Site
+        run: |
+          bundle install
+          bundle exec jekyll build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4.3.5
         with:
-          name: docs
-          path: docs/${{ env.ARTIFACT }}
-          if-no-files-found: error
-          retention-days: 7
-          compression-level: 0
-          overwrite: true
-
-  deploy:
-    if: ${{ github.event_name == 'pull_request' && github.base_ref == 'refs/heads/main' }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docs
-
-      - name: Unzip artifact
-        run: unzip -O UTF-8 -qq ${{ env.ARTIFACT }} -d dir
-
-      - name: Move extracted files
-        run: mv dir/github-pages/artifact/webHelpMG2-all/* dir/
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: dir
+          name: jekyll-site
+          path: _site/
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4.0.4
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          github_token: ${{ secrets.ACTIONS_RUNTIME_TOKEN }}
+          branch: gh-pages
+          folder: _site

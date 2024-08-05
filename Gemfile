@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+gem 'jekyll'
+gem 'bundler'
+gem 'json'
+gem 'jekyll-theme-cayman'
+gem 'html-proofer'
+gem 'ffi'
