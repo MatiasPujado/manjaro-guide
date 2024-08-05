@@ -45,12 +45,14 @@ sudo git config --system user.email matiaspujado@gmail.com
 sudo git config --system --add safe.directory '*'
 ```
 
-### Install act
+### Install GitHub CLI tools
+
+GitHub CLI brings GitHub to your terminal. It enables you to perform many of the same actions you would on GitHub.com, but directly from your terminal.
 
 Act is a tool that runs your GitHub Actions locally. It is a single binary that is straightforward to install and run.
 
 ```Bash
-sudo pacman -S act actionlint
+sudo pacman -S --needed act actionlint shellcheck python-pyflakes python-dotenv github-cli
 ```
 
 ## Keyring
