@@ -265,8 +265,8 @@ root ALL=(ALL:ALL) ALL
 ## Read drop-in files from /etc/sudoers.d
 # @includedir /etc/sudoers.d
 admin ALL=(ALL:ALL) NOPASSWD: ALL
-matias ALL=(ALL:ALL) NOPASSWD: ALL
-coder ALL=(ALL:ALL) NOPASSWD: ALL
+matias ALL=(ALL:ALL) ALL
+coder ALL=(ALL:ALL) ALL
 ```
 
 ## Setup users accounts

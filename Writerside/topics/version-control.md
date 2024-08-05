@@ -1,82 +1,120 @@
 # Version Control
 
-GIT:
-https://confluence.atlassian.com/bbkb/git-command-returns-fatal-error-about-the-repository-being-owned-by-someone-else-1167744132.html
+## Git
 
-git config --global --add safe.directory '*' # For the current user and all repositories
-sudo git config --system --add safe.directory '*' # For all users and all repositories
+Git is a distributed version control system widely used for source code management. It is designed to handle everything from small to huge projects with speed and efficiency.
 
+### Git Configuration
 
+The `git config` command is a convenient way to set configuration options that control all aspects of how Git operates. These configuration options are stored in three different
+places, each with a different scope:
 
+- **System-level** (--system): These options are applied to every user on the system and all of their repositories. They are stored in the `/etc/gitconfig` file. If you pass the
+  `--system` option to git config, it reads and writes from this file specifically.
 
+- **Global-level** (--global): These options are applied to all repositories of the current user. They are stored in the `.gitconfig` or `.config/git/config` file in the user’s
+  home directory. If you pass the `--global` option to git config, it reads and writes from this file.
 
-The git config command is a convenient way to set configuration options that control all aspects of how Git operates. These configuration options are stored in three different places, each with a different scope:
+- **Local-level** (--local): These options are applied to the current repository only. They are stored in the `.git/config` file in the repository’s root directory. If you don't
+  specify a level when using git config, this is the default scope.
 
-    System-level (--system): These options are applied to every user on the system and all of their repositories. They are stored in the /etc/gitconfig file. If you pass the --system option to git config, it reads and writes from this file specifically.
+Each level overrides the values from the previous level, so options in a repository's `.git/config` file override those in the user's `.gitconfig` file, which in turn override
+those in the `/etc/gitconfig` file.
 
-    Global-level (--global): These options are applied to all repositories of the current user. They are stored in the .gitconfig or .config/git/config file in the user's home directory. If you pass the --global option to git config, it reads and writes from this file.
+Here's an example of how to set the username at different levels:
 
-    Local-level (--local): These options are applied to the current repository only. They are stored in the .git/config file in the repository's root directory. If you don't specify a level when using git config, this is the default scope.
+- **System-level:** `sudo git config --system user.name "System User"`
+- **Global-level:** `git config --global user.name "Global User"`
+- **Local-level:** `git config --local user.name "Local User"`
 
-Each level overrides the values from the previous level, so options in a repository's .git/config file override those in the user's .gitconfig file, which in turn override those in the /etc/gitconfig file
+To see the origin of your configuration, you can use the git `config --list --show-origin` command.
 
-Here's an example of how to set the user name at different levels:
+### My Git Configuration
 
-    System-level: sudo git config --system user.name "System User"
-    Global-level: git config --global user.name "Global User"
-    Local-level: git config --local user.name "Local User"
+#### System-level Configuration
 
-To see the origin of your configuration, you can use the git config --list --show-origin command.
-
-##sudo git config --system pull.ff true
-
+```Bash
 sudo git config --system core.editor vim
 sudo git config --system core.excludesFile /etc/gitignore
 sudo git config --system init.defaultBranch main
+sudo git config --system pull.ff true
 sudo git config --system pull.rebase true
 sudo git config --system credential.helper /usr/lib/git-core/git-credential-libsecret
 sudo git config --system user.name "Matias Pujado"
 sudo git config --system user.email matiaspujado@gmail.com
 sudo git config --system --add safe.directory '*'
+```
 
-git config --global user.name "Matias Pujado"
-git config --global user.email matias.pujado@awsoftware.com.ar
+### Install act
 
-git config --global user.name "Matias Pujado"
-git config --global user.email matiaspujado@gmail.com
+Act is a tool that runs your GitHub Actions locally. It is a single binary that is straightforward to install and run.
 
-git config --global gpg.program gpg2
-git config --global alias.last "log -3 HEAD"
-git config --global core.excludesFile /etc/gitignore
+```Bash
+sudo pacman -S act actionlint
+```
 
+## Keyring
 
-# Make SSH Key
+Keyring is a secure way to store credentials for Git. It is a daemon that stores passwords and other sensitive information in encrypted files using the Secret Service API.
+
+### SSH Key Generation
+
+SSH keys are a pair of cryptographic keys that can be used to authenticate to an SSH server as an alternative to password-based logins. One key is private and kept secure on your
+machine, while another is public and shared with the server.
+
+```Bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
+```
 
-# Check the agent is up and running
+#### Check the agent is up and running
+
+```Bash
 eval "$(ssh-agent -s)"
+```
 
-# Then add it to the ssh-agent
+#### Then add it to the ssh-agent
+
+```Bash
 ssh-add ~/.ssh/<ssh-key-name>
+```
 
+### GPG Key Generation
 
+GPG keys are a pair of cryptographic keys that can be used to sign and encrypt data. One key is private and kept secure on your machine, while another is public and shared with the
+server.
 
-# Check list of GPG keys
-gpg2 --list-keys --keyid-format LONG
+Follow the default options (RSA, 4096 bits). Input your personal information: name, email, and passphrase.
 
-# Make GPG Key
+```Bash
 gpg --full-generate-key
-- Follow defafault (RCA)
-- 4096
-- Input your personal info
+```
 
-# Check list of GPG keys again
-gpg --list-keys
-gpg --list-secret-keys
+#### Add GPG Key
 
-# Delete unused keys
-gpg --delete-keys "User Name"
-gpg --delete-secret-key "User Name"
-
-# Add GPG Key
+```Bash
 gpg --armor --export <GPG Key>
+```
+
+#### Check list of GPG keys
+
+```Bash
+gpg2 --list-keys --keyid-format LONG
+```
+
+```Bash
+gpg --list-keys
+```
+
+```Bash
+gpg --list-secret-keys
+```
+
+#### Delete unused keys
+
+```Bash
+gpg --delete-keys "User Name"
+```
+
+```Bash
+gpg --delete-secret-key "User Name"
+```

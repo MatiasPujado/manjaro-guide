@@ -73,6 +73,9 @@
 
 - [Waydroid](https://waydro.id/)
 - [Waydroid ArchLinux Wiki](https://wiki.archlinux.org/title/Waydroid)
+- [Device is not Play Protect certified](https://github.com/waydroid/waydroid/issues/753)
+- [Device is not Play Protect certified](https://github.com/casualsnek/waydroid_script/issues/26)
+- [Android device uncertified](https://www.google.com/android/uncertified/)
 
 ### Java
 
@@ -119,9 +122,11 @@
 - [Winetricks](https://wiki.winehq.org/Winetricks)
 - [Winetricks ArchLinux Wiki](https://wiki.archlinux.org/title/Winetricks)
 
-### GSConnect
+### GSConnect & KDEConnect
 
 - [GSConnect Guide](https://askubuntu.com/questions/1036351/how-to-install-and-run-gsconnect-to-have-android-integration-transfer-files-se)
+- [GSConnect ArchLinux Wiki](https://wiki.archlinux.org/title/GSConnect)
+- [KDEConnect](https://userbase.kde.org/KDEConnect#)
 
 ### Printer Drivers
 
@@ -135,3 +140,24 @@
 - [Kernel Newbies](https://kernelnewbies.org/)
 - [Kernel Source](https://www.kernel.org/doc/html/latest/index.html)
 - [Manjaro Kernels Wiki](https://wiki.manjaro.org/index.php/Manjaro_Kernels#Overview)
+
+### DNS
+
+- [Cloudflare](https://www.cloudflare.com/)
+- [Cloudflare Docs](https://developers.cloudflare.com/
+- [Cloudflare Setup](https://developers.cloudflare.com/1.1.1.1/setup/linux/)
+- [Google](https://developers.google.com/speed/public-dns/docs/using)
+
+### Git
+
+- [Git](https://git-scm.com/)
+- [Git ArchLinux Wiki](https://wiki.archlinux.org/title/Git)
+- [Git Docs](https://git-scm.com/doc)
+- [Git Book](https://git-scm.com/book/en/v2)
+- [Git Cheat Sheet](https://training.github.com/downloads/github-git-cheat-sheet.pdf)
+- [Git Tutorial](https://www.atlassian.com/git/tutorials)
+- [Git Dubious Ownership Error](https://confluence.atlassian.com/bbkb/git-command-returns-fatal-error-about-the-repository-being-owned-by-someone-else-1167744132.html)
+
+### Manjaro
+
+- [Add Certificated](https://warlord0blog.wordpress.com/2021/01/17/trusting-ca-certificates-manjaro/)

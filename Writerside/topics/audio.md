@@ -53,6 +53,8 @@ sudo pacman -S --needed gstreamer gstreamer-docs gstreamer-vaapi ffmpegthumbnail
 
 ## Enable auto-connect
 
+`module-switch-on-connect` is a PulseAudio module that automatically switches the audio output to a newly connected device. To enable it, run:
+
 ```Bash
 pactl load-module module-switch-on-connect
 ```
