@@ -42,6 +42,10 @@ jobs:
           bundle install
           bundle exec jekyll build
 
+      - name: Unzip webHelpMG2-all.zip
+        run: |
+          unzip -o _site/docs/webHelpMG2-all.zip -d _site/docs/
+
       - name: Upload _site directory
         uses: actions/upload-artifact@v4.3.5
         with:
