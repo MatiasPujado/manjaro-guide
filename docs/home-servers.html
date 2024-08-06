@@ -1,0 +1,178 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-08-06T01:08:50.345531619"><title>Home Servers | Manjaro Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"printers","level":0,"title":"Printers","anchor":"#printers"},{"id":"plex-media-server","level":0,"title":"Plex Media Server","anchor":"#plex-media-server"},{"id":"ftp-server","level":0,"title":"FTP Server","anchor":"#ftp-server"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Home Servers | Manjaro Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Manjaro Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/home-servers.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Home Servers | Manjaro Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/home-servers.html#webpage",
+    "url": "writerside-documentation/home-servers.html",
+    "name": "Home Servers | Manjaro Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Manjaro Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="home-servers" data-main-title="Home Servers" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Manjaro Guide  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="home-servers" id="home-servers.md">Home Servers</h1><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="printers" data-toc="printers">Printers</h2></div><div class="collapse__content"><section class="chapter"><h3 id="brother-dcp-1617nw" data-toc="brother-dcp-1617nw">Brother DCP-1617NW</h3><p id="rlx7gm_7">Install the necessary packages and other dependencies:</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed cups manjaro-printer gtk2 sane lib32-glibc system-config-printer
+</div><p id="rlx7gm_9">Then, install the Brother DCP-1617NW drivers:</p><div class="code-block" data-lang="bash">
+sudo pamac install brscan4 brother-dcp1610w brother-lpr-drivers-common
+</div><p id="rlx7gm_11">Add the printer to the system:</p><div class="code-block" data-lang="bash">
+sudo brsaneconfig4 -a name=Brother model=&quot;DCP-1617NW&quot; ip=192.168.100.150
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="plex-media-server" data-toc="plex-media-server">Plex Media Server</h2></div><div class="collapse__content"><p id="rlx7gm_13">Use the following command to install Plex Media Server:</p><div class="code-block" data-lang="bash">
+sudo yay -S plexmediaserver
+</div><section class="chapter"><h3 id="add-users-to-plex-group" data-toc="add-users-to-plex-group">Add users to Plex group</h3><div class="code-block" data-lang="bash">
+sudo usermod -aG plex admin
+sudo usermod -aG plex matias
+sudo usermod -aG plex coder
+</div></section><section class="chapter"><h3 id="enable-and-start-the-service" data-toc="enable-and-start-the-service">Enable and start the service</h3><div class="code-block" data-lang="bash">
+sudo systemctl enable ---now plexmediaserver.service
+</div></section><section class="chapter"><h3 id="fix-ulimit-and-set-security-settings" data-toc="fix-ulimit-and-set-security-settings">Fix ulimit and set security settings</h3><div class="code-block" data-lang="bash">
+sudo gedit /etc/systemd/system/plexmediaserver.service.d/restrict.conf
+</div><div class="code-block" data-lang="shell">
+[Service]
+ReadOnlyPaths=/
+ReadWritePaths=/var/lib/plex /tmp
+MemoryMax=4G
+</div></section><section class="chapter"><h3 id="fix-max-amount-of-libraries-for-non-root-users" data-toc="fix-max-amount-of-libraries-for-non-root-users">Fix max amount of libraries for non-root users</h3><div class="code-block" data-lang="bash">
+sudo gedit /etc/sysctl.d/40-max-user-watches.conf
+</div><div class="code-block" data-lang="shell">
+fs.inotify.max_user_watches=524288
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="ftp-server" data-toc="ftp-server">FTP Server</h2></div><div class="collapse__content"><section class="chapter"><h3 id="create-a-new-ftp-user-account" data-toc="create-a-new-ftp-user-account">Create a new FTP user account</h3><p id="rlx7gm_27">sudo useradd -m ftpuser sudo passwd ftpuser</p><p id="rlx7gm_28">Deleting ftp user account sudo userdel ftpuser sudo userdel -r ftpuser</p><p id="rlx7gm_29">Hide ftpuser from login screen sudo gedit /var/lib/AccountsService/users/ftpuser [User] Languages=en_US.UTF-8; Session= Icon=/home/ftpuser/.face SystemAccount=true</p></section><section class="chapter"><h3 id="update-servers-configuration" data-toc="update-servers-configuration">Update servers configuration</h3><p id="rlx7gm_30">First, backup the original configuration file:</p><div class="code-block" data-lang="bash">
+sudo mv /etc/vsftpd.conf /etc/vsftpd.conf.bak
+</div><p id="rlx7gm_32">Then, create a new configuration file and edit it:</p><div class="code-block" data-lang="bash">
+sudo touch /etc/vsftpd.conf
+sudo vim /etc/vsftpd.conf
+</div><div class="code-block" data-lang="shell">
+# Example config file /etc/vsftpd.conf
+#
+# The default compiled in settings are fairly paranoid. This sample file
+# loosens things up a bit, to make the ftp daemon more usable.
+# Please see vsftpd.conf.5 for all compiled in defaults.
+#
+# READ THIS: This example file is NOT an exhaustive list of vsftpd options.
+# Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd's
+# capabilities.
+#
+# Allow anonymous FTP? (Beware - allowed by default if you comment this out).
+anonymous_enable=NO
+#
+# Uncomment this to allow local users to log in.
+local_enable=YES
+#
+# Uncomment this to enable any form of FTP write command.
+write_enable=YES
+#
+# Default umask for local users is 077. You may wish to change this to 022,
+# if your users expect that (022 is used by most other ftpd's)
+#local_umask=022
+#
+# Uncomment this to allow the anonymous FTP user to upload files. This only
+# has an effect if the above global write enable is activated. Also, you will
+# obviously need to create a directory writable by the FTP user.
+#anon_upload_enable=YES
+#
+# Uncomment this if you want the anonymous FTP user to be able to create
+# new directories.
+#anon_mkdir_write_enable=YES
+#
+# Activate directory messages - messages given to remote users when they
+# go into a certain directory.
+dirmessage_enable=YES
+#
+# Activate logging of uploads/downloads.
+xferlog_enable=YES
+#
+# Make sure PORT transfer connections originate from port 20 (ftp-data).
+connect_from_port_20=YES
+#
+# If you want, you can arrange for uploaded anonymous files to be owned by
+# a different user. Note! Using &quot;root&quot; for uploaded files is not
+# recommended!
+#chown_uploads=YES
+#chown_username=whoever
+#
+# You may override where the log file goes if you like. The default is shown
+# below.
+#xferlog_file=/var/log/vsftpd.log
+#
+# If you want, you can have your log file in standard ftpd xferlog format.
+# Note that the default log file location is /var/log/xferlog in this case.
+#xferlog_std_format=YES
+#
+# You may change the default value for timing out an idle session.
+#idle_session_timeout=600
+#
+# You may change the default value for timing out a data connection.
+#data_connection_timeout=120
+#
+# It is recommended that you define on your system a unique user which the
+# ftp server can use as a totally isolated and unprivileged user.
+#nopriv_user=ftpsecure
+#
+# Enable this and the server will recognise asynchronous ABOR requests. Not
+# recommended for security (the code is non-trivial). Not enabling it,
+# however, may confuse older FTP clients.
+#async_abor_enable=YES
+#
+# By default the server will pretend to allow ASCII mode but in fact ignore
+# the request. Turn on the below options to have the server actually do ASCII
+# mangling on files when in ASCII mode.
+# Beware that on some FTP servers, ASCII support allows a denial of service
+# attack (DoS) via the command &quot;SIZE /big/file&quot; in ASCII mode. vsftpd
+# predicted this attack and has always been safe, reporting the size of the
+# raw file.
+# ASCII mangling is a horrible feature of the protocol.
+ascii_upload_enable=YES
+ascii_download_enable=YES
+#
+# You may fully customise the login banner string:
+#ftpd_banner=Welcome to blah FTP service.
+#
+# You may specify a file of disallowed anonymous e-mail addresses. Apparently
+# useful for combatting certain DoS attacks.
+#deny_email_enable=YES
+# (default follows)
+#banned_email_file=/etc/vsftpd.banned_emails
+#
+# You may specify an explicit list of local users to chroot() to their home
+# directory. If chroot_local_user is YES, then this list becomes a list of
+# users to NOT chroot().
+# (Warning! chroot'ing can be very dangerous. If using chroot, make sure that
+# the user does not have write access to the top level directory within the
+# chroot)
+chroot_local_user=NO
+chroot_list_enable=YES
+# (default follows)
+chroot_list_file=/etc/vsftpd.chroot_list
+#
+# You may activate the &quot;-R&quot; option to the builtin ls. This is disabled by
+# default to avoid remote users being able to cause excessive I/O on large
+# sites. However, some broken FTP clients such as &quot;ncftp&quot; and &quot;mirror&quot; assume
+# the presence of the &quot;-R&quot; option, so there is a strong case for enabling it.
+ls_recurse_enable=YES
+#
+# When &quot;listen&quot; directive is enabled, vsftpd runs in standalone mode and
+# listens on IPv4 sockets. This directive cannot be used in conjunction
+# with the listen_ipv6 directive.
+listen=YES
+#
+# This directive enables listening on IPv6 sockets. To listen on IPv4 and IPv6
+# sockets, you must run two copies of vsftpd with two configuration files.
+# Make sure, that one of the listen options is commented !!
+#listen_ipv6=YES
+
+# Set own PAM service name to detect authentication settings specified
+# for vsftpd by the system package.
+pam_service_name=vsftpd
+
+# add to the end : specify chroot directory
+# if not specified, users' home directory equals FTP home directory
+#local_root=/media/Vault
+# turn off seccomp filter if cannot login normally
+seccomp_sandbox=NO
+allow_writeable_chroot=YES
+guest_enable=YES
+# Imports different user profiles (/etc/user_conf/{coder,admin,matias,ftpuser}) with different directories
+user_config_dir=/etc/user_conf
+</div></section></div></div></section><div class="last-modified">Last modified: 06 August 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="flatpak-apps.html" class="navigation-links__prev">Flatpak Apps</a><a href="network.html" class="navigation-links__next">Network Settings</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>

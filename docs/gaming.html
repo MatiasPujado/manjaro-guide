@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-08-06T01:08:50.34495784"><title>Gaming on Linux | Manjaro Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"lutris","level":0,"title":"Lutris","anchor":"#lutris"},{"id":"heroic-games-launcher","level":0,"title":"Heroic Games Launcher","anchor":"#heroic-games-launcher"},{"id":"steam","level":0,"title":"Steam","anchor":"#steam"},{"id":"wine-wine-is-not-an-emulator","level":0,"title":"Wine (Wine Is Not an Emulator)","anchor":"#wine-wine-is-not-an-emulator"},{"id":"proton","level":0,"title":"Proton","anchor":"#proton"},{"id":"esync-helps-game-overhead","level":0,"title":"ESync - Helps Game Overhead","anchor":"#esync-helps-game-overhead"},{"id":"gamemode","level":0,"title":"GameMode","anchor":"#gamemode"},{"id":"goverlay","level":0,"title":"Goverlay","anchor":"#goverlay"},{"id":"replay-sorcery","level":0,"title":"Replay Sorcery","anchor":"#replay-sorcery"},{"id":"gamescope","level":0,"title":"Gamescope","anchor":"#gamescope"},{"id":"mangohud","level":0,"title":"MangoHud","anchor":"#mangohud"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Gaming on Linux | Manjaro Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Manjaro Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/gaming.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Gaming on Linux | Manjaro Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/gaming.html#webpage",
+    "url": "writerside-documentation/gaming.html",
+    "name": "Gaming on Linux | Manjaro Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Manjaro Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="gaming" data-main-title="Gaming on Linux" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Manjaro Guide  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="gaming" id="gaming.md">Gaming on Linux</h1><section class="chapter"><h2 id="lutris" data-toc="lutris">Lutris</h2><p id="z9wniqh_14">Lutris is a gaming platform that allows you to install, configure, and launch games from one place. It supports a wide range of games, including those from GOG, Steam and Humble.</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed lutris
+</div></section><section class="chapter"><h2 id="heroic-games-launcher" data-toc="heroic-games-launcher">Heroic Games Launcher</h2><p id="z9wniqh_16">Heroic Games Launcher is an open-source alternative to the Epic Games Launcher. It allows you to install, configure, and launch games from the Epic Games Store.</p><div class="code-block" data-lang="bash">
+yay -S heroic-games-launcher-bin
+</div></section><section class="chapter"><h2 id="steam" data-toc="steam">Steam</h2><p id="z9wniqh_18">Steam is a digital distribution platform that allows you to buy, download, and play games on Linux. It is the most popular gaming platform on Linux and supports a wide range of games.</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed steam linux-steam-integration steam-native-runtime
+</div></section><section class="chapter"><h2 id="wine-wine-is-not-an-emulator" data-toc="wine-wine-is-not-an-emulator">Wine (Wine Is Not an Emulator)</h2><p id="z9wniqh_20">Wine is a compatibility layer that allows you to run Windows applications on Linux. It is not an emulator but rather a translation layer that converts Windows API calls into POSIX calls on-the-fly. This allows you to run Windows applications on Linux without the need for a virtual machine or dual-booting.</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed wine-staging winetricks wine-gecko wine-mono mono vkd3d lib32-vkd3d wine-gecko
+</div><p id="z9wniqh_22">Configuring Wine for x64:</p><div class="code-block" data-lang="bash">
+winecfg
+</div><p id="z9wniqh_24">Configuring Wine for x86:</p><p id="z9wniqh_25">Enable these environment variables in your shell:</p><div class="code-block" data-lang="bash">
+export WINEARCH=win32
+export WINEPREFIX=~/.wine32
+</div><p id="z9wniqh_27">And create the directory:</p><div class="code-block" data-lang="bash">
+mkdir -p ~/.wine32/drive_c
+</div><div class="code-block" data-lang="bash">
+winecfg
+</div><section class="chapter"><h3 id="winetricks" data-toc="winetricks">Winetricks</h3><p id="z9wniqh_31">Winetricks is a script that can be used to install various libraries and dependencies required by Windows applications to run on Linux.</p><div class="code-block" data-lang="bash">
+winetricks
+</div><p id="z9wniqh_33">Install dependencies in one go:</p><div class="code-block" data-lang="bash">
+winetricks corefonts lucida droid consolas allcodecs dxvk dotnet40 d3dx9_43
+</div></section></section><section class="chapter"><h2 id="proton" data-toc="proton">Proton</h2><p id="z9wniqh_35">Proton is a compatibility layer that allows you to run Windows games on Linux. It is a fork of Wine with additional patches and tools to make it easier to run games on Linux.</p><section class="chapter"><h3 id="proton-manager" data-toc="proton-manager">Proton Manager</h3><section class="chapter"><h4 id="install-protonup-qt-from-aur-repository" data-toc="install-protonup-qt-from-aur-repository">Install ProtonUp-QT from AUR repository</h4><div class="code-block" data-lang="bash">
+yay -S protonup-qt
+</div></section><section class="chapter"><h4 id="install-protontricks-from-aur-repository" data-toc="install-protontricks-from-aur-repository">Install Protontricks from AUR repository</h4><p id="z9wniqh_49">A simple wrapper that does winetricks things for Proton-enabled games.</p><div class="code-block" data-lang="bash">
+yay -S protontricks
+</div></section><section class="chapter"><h4 id="install-protonup-cli" data-toc="install-protonup-cli">Install ProtonUp CLI</h4><p id="z9wniqh_51">ProtonUp-RS from AUR repository:</p><div class="code-block" data-lang="bash">
+wget https://github.com/auyer/Protonup-rs/releases/latest/download/protonup-rs-linux-amd64.tar.gz -O - | tar -xz &amp;&amp; zenity --password | sudo -S mv protonup-rs /usr/bin/
+</div><p id="z9wniqh_53">ProtonUp-NG from AUR repository:</p><div class="code-block" data-lang="bash">
+yay -S protonup-ng-git
+</div></section><section class="chapter"><h4 id="protonup-ng-using-python" data-toc="protonup-ng-using-python">ProtonUp-NG using Python</h4><div class="code-block" data-lang="bash">
+pip3 install protonup-ng
+</div><p id="z9wniqh_56">Uninstall ProtonUp-NG using Python:</p><div class="code-block" data-lang="bash">
+pip3 uninstall protonup-ng
+</div><p id="z9wniqh_58">Add these lines to your shell configuration file:</p><div class="code-block" data-lang="bash">
+export PATH=$PATH:~/.local/bin
+source .zshrc
+</div></section><section class="chapter"><h4 id="check-protonup-version-installed" data-toc="check-protonup-version-installed">Check Protonup version installed</h4><div class="code-block" data-lang="bash">
+pip list | grep protonup
+</div><p id="z9wniqh_61">Before opening Steam, set your installation directory:</p><div class="code-block" data-lang="bash">
+protonup -d &quot;~/.steam/root/compatibilitytools.d/&quot;
+</div></section><section class="chapter"><h4 id="update-to-the-latest-version" data-toc="update-to-the-latest-version">Update to the latest version</h4><div class="code-block" data-lang="bash">
+protonup
+</div></section><section class="chapter"><h4 id="list-available-versions" data-toc="list-available-versions">List available versions</h4><div class="code-block" data-lang="bash">
+protonup --releases
+</div></section><section class="chapter"><h4 id="install-a-specific-version" data-toc="install-a-specific-version">Install a specific version</h4><div class="code-block" data-lang="bash">
+protonup -t 6.5-GE-2
+</div></section><section class="chapter"><h4 id="list-existing-installations" data-toc="list-existing-installations">List existing installations</h4><div class="code-block" data-lang="bash">
+protonup -l
+</div></section><section class="chapter"><h4 id="remove-existing-installations" data-toc="remove-existing-installations">Remove existing installations</h4><div class="code-block" data-lang="bash">
+protonup -r 6.5-GE-2
+</div></section><section class="chapter"><h4 id="download-proton-ge-without-installing-it" data-toc="download-proton-ge-without-installing-it">Download Proton-GE without installing it</h4><div class="code-block" data-lang="bash">
+protonup --download
+</div></section></section></section><section class="chapter"><h2 id="esync-helps-game-overhead" data-toc="esync-helps-game-overhead">ESync - Helps Game Overhead</h2><p id="z9wniqh_69">Check to see if Esync is enabled (most distributions do by default)</p><div class="code-block" data-lang="bash">
+ulimit -Hn
+</div><p id="z9wniqh_71">If the output is higher than <code class="code" id="z9wniqh_77">500,000</code>, then <span class="control" id="z9wniqh_78">ESYNC is enabled</span>. If the returning value is lower or equal to <code class="code" id="z9wniqh_79">500,000</code>, then <span class="control" id="z9wniqh_80">ESYNC is disabled</span>. You will have to enable it manually. Change the following files:</p><div class="code-block" data-lang="bash">
+sudo vim /etc/systemd/system.conf
+</div><div class="code-block" data-lang="bash">
+DefaultLimitNOFILE=524288
+</div><aside class="prompt" data-type="note" data-title="" id="z9wniqh_74"><p id="z9wniqh_81"><span class="control" id="z9wniqh_83">Note</span></p><p id="z9wniqh_82">Make sure you change <code class="code" id="z9wniqh_84">&lt;username&gt;</code> to your actual username.</p></aside><div class="code-block" data-lang="bash">
+sudo gedit /etc/security/limits.conf
+</div><div class="code-block" data-lang="bash">
+&lt;username&gt; hard nofile 524288
+&lt;username&gt; soft nofile 524288
+</div></section><section class="chapter"><h2 id="gamemode" data-toc="gamemode">GameMode</h2><p id="z9wniqh_85">GameMode is a daemon/lib combo for Linux that allows games to request a set of optimizations to be temporarily applied to the host OS.</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed gamemode lib32-gamemode
+</div></section><section class="chapter"><h2 id="goverlay" data-toc="goverlay">Goverlay</h2><p id="z9wniqh_87">Goverlay is a graphical tool to manage Linux system settings for gaming. It allows you to configure various settings such as CPU governor, I/O scheduler, and GPU overclocking.</p><div class="code-block" data-lang="bash">
+yay -S --needed goverlay-bin
+</div></section><section class="chapter"><h2 id="replay-sorcery" data-toc="replay-sorcery">Replay Sorcery</h2><p id="z9wniqh_89">Replay is a tool that allows you to record and replay your games on Linux. It supports various formats such as MP4, WebM, and GIF.</p><div class="code-block" data-lang="bash">
+yay -S --needed replay-sorcery
+</div></section><section class="chapter"><h2 id="gamescope" data-toc="gamescope">Gamescope</h2><p id="z9wniqh_91">Gamescope is a compositor that allows you to run games in a separate X server with a custom resolution and refresh rate. This can help improve performance and reduce input lag in games.</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed gamescope
+</div></section><section class="chapter"><h2 id="mangohud" data-toc="mangohud">MangoHud</h2><p id="z9wniqh_93">MangoHud is a heads-up display (HUD) for Linux that allows you to monitor FPS, CPU and GPU usage, and other performance metrics while gaming.</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed mangohud lib32-mangohud
+</div></section><div class="last-modified">Last modified: 06 August 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="dev-tools.html" class="navigation-links__prev">Dev Tools</a><a href="flatpak-apps.html" class="navigation-links__next">Flatpak Apps</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>

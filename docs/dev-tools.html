@@ -1,0 +1,145 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-08-06T01:08:50.359871938"><title>Dev Tools | Manjaro Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"java","level":0,"title":"Java","anchor":"#java"},{"id":"kotlin","level":0,"title":"Kotlin","anchor":"#kotlin"},{"id":"mysql-mysql-workbench","level":0,"title":"MySQL - MySQL Workbench","anchor":"#mysql-mysql-workbench"},{"id":"phpmyadmin","level":0,"title":"PhpMyAdmin","anchor":"#phpmyadmin"},{"id":"docker","level":0,"title":"Docker","anchor":"#docker"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Dev Tools | Manjaro Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Manjaro Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/dev-tools.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Dev Tools | Manjaro Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/dev-tools.html#webpage",
+    "url": "writerside-documentation/dev-tools.html",
+    "name": "Dev Tools | Manjaro Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Manjaro Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="dev-tools" data-main-title="Dev Tools" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Manjaro Guide  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="dev-tools" id="dev-tools.md">Dev Tools</h1><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="java" data-toc="java">Java</h2></div><div class="collapse__content"><section class="chapter"><h3 id="installation" data-toc="installation">Installation</h3><p id="-lm17y9_14">The latest OpenJDK</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed jdk-openjdk openjdk-doc openjdk-src
+</div><p id="-lm17y9_16">OpenJDK 17</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed jdk17-openjdk openjdk17-doc openjdk17-src
+</div><p id="-lm17y9_18">OpenJDK 11</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed jdk11-openjdk openjdk11-doc openjdk11-src
+</div><p id="-lm17y9_20">OpenJDK 8</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed jre8-openjdk-headless jre8-openjdk jdk8-openjdk openjdk8-doc openjdk8-src
+</div><p id="-lm17y9_22">VisualVM</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed visualvm
+</div><p id="-lm17y9_24">For other versions, like <span class="control" id="-lm17y9_26">Oracle</span> and <span class="control" id="-lm17y9_27">Zulu</span>, you will have to do the installation manually. Download the desired version and unpack it in <code class="code" id="-lm17y9_28">/usr/lib/jvm</code>:</p><div class="code-block" data-lang="bash">
+sudo tar -xvzf jdk-17.0.2_linux-x64_bin.tar.gz -C /usr/lib/jvm
+</div></section><section class="chapter"><h3 id="setting-the-default-java-version" data-toc="setting-the-default-java-version">Setting the default Java version</h3><p id="-lm17y9_29">The helper script archlinux-java provides such functionalities:</p><div class="code-block" data-lang="bash">
+archlinux-java &lt;COMMAND&gt;
+</div><div class="code-block" data-lang="bash">
+COMMAND:
+status		List installed Java environments and enabled one
+get		Return the short name of the Java environment set as default
+set &lt;JAVA_ENV&gt;	Force &lt;JAVA_ENV&gt; as default
+unset		Unset current default Java environment
+fix		Fix an invalid/broken default Java environment configuration
+</div></section><section class="chapter"><h3 id="list-compatible-java-environments-installed" data-toc="list-compatible-java-environments-installed">List compatible Java environments installed</h3><aside class="prompt" data-type="note" data-title="" id="-lm17y9_32"><p id="-lm17y9_35"><span class="control" id="-lm17y9_37">Note</span></p><p id="-lm17y9_36">The line with <code class="code" id="-lm17y9_38">(default)</code> is denoting the currently active default version. Invocation of java and other binaries will rely on this Java install.</p></aside><br><div class="code-block" data-lang="bash">
+archlinux-java status
+</div></section><section class="chapter"><h3 id="changing-the-default-java-version" data-toc="changing-the-default-java-version">Changing the default Java version</h3><div class="code-block" data-lang="bash">
+sudo archlinux-java set &lt;java_version_name&gt;
+</div></section><section class="chapter"><h3 id="unsetting-the-default-java-environment" data-toc="unsetting-the-default-java-environment">Unsetting the default Java environment</h3><p id="-lm17y9_40">There should be no need to unset a Java environment as packages providing them should take care of this. Still, should you want to do so, just use command unset:</p><div class="code-block" data-lang="bash">
+sudo archlinux-java unset
+</div></section><section class="chapter"><h3 id="fixing-the-default-java-environment" data-toc="fixing-the-default-java-environment">Fixing the default Java environment</h3><p id="-lm17y9_42">If an invalid Java environment link is set, calling the archlinux-java fix command tries to fix it. Also note that if no default Java environment is set, this will look for valid versions and try to set it for you. Officially supported package &ldquo;OpenJDK 8&rdquo; will be considered first in this order, then other installed environments.</p><div class="code-block" data-lang="bash">
+sudo archlinux-java fix
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="kotlin" data-toc="kotlin">Kotlin</h2></div><div class="collapse__content"><div class="code-block" data-lang="bash">
+sudo pacman -S kotlin ktlint
+</div></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="mysql-mysql-workbench" data-toc="mysql-mysql-workbench">MySQL - MySQL Workbench</h2></div><div class="collapse__content"><section class="chapter"><h3 id="to-install-mysql-choose-mariadb" data-toc="to-install-mysql-choose-mariadb">To install MySQL, choose MariaDB:</h3><div class="code-block" data-lang="bash">
+sudo pacman -S --needed mysql-workbench
+</div><p id="-lm17y9_50">Verify the installation:</p><div class="code-block" data-lang="bash">
+mysqld --version
+</div></section><section class="chapter"><h3 id="enable-and-start-the-mysql-service" data-toc="enable-and-start-the-mysql-service">Enable and start the MySQL service:</h3><div class="code-block" data-lang="bash">
+sudo systemctl enable --now mysqld
+</div><p id="-lm17y9_53">If the following error is prompted:</p><div class="code-block" data-lang="bash">
+Job for mariadb.service failed because the control process exited with error code.
+See &quot;systemctl status mariadb.service&quot; and &quot;journalctl -xeu mariadb.service&quot; for details.
+</div><p id="-lm17y9_55">Run the following command:</p><div class="code-block" data-lang="bash">
+sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+</div><p id="-lm17y9_57">The output should be similar to this:</p><div class="code-block" data-lang="bash">
+Installing MariaDB/MySQL system tables in '/var/lib/mysql' ...
+OK
+
+To start mysqld at boot time you have to copy
+support-files/mysql.server to the right place for your system
+
+Two all-privilege accounts were created.
+One is root@localhost, it has no password, but you need to
+be system 'root' user to connect. Use, for example, sudo mysql
+The second is mysql@localhost, it has no password either, but
+you need to be the system 'mysql' user to connect.
+After connecting you can set the password, if you would need to be
+able to connect as any of these users with a password and without sudo
+
+See the MariaDB Knowledgebase at https://mariadb.com/kb
+
+You can start the MariaDB daemon with:
+cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
+
+You can test the MariaDB daemon with mysql-test-run.pl
+cd '/usr/mysql-test' ; perl mysql-test-run.pl
+
+Please report any problems at https://mariadb.org/jira
+
+The latest information about MariaDB is available at https://mariadb.org/.
+
+Consider joining MariaDB's strong and vibrant community:
+https://mariadb.org/get-involved/
+</div><p id="-lm17y9_59">Now, try <a href="#enable-and-start-the-mysql-service" id="-lm17y9_62" data-tooltip="If the following error is prompted:">enabling and starting the MySQL service again</a></p><p id="-lm17y9_60">Create a soft-link to the required library:</p><div class="code-block" data-lang="bash">
+sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5
+</div></section><section class="chapter"><h3 id="change-root-s-predefined-password" data-toc="change-root-s-predefined-password">Change root&rsquo;s predefined password:</h3><div class="code-block" data-lang="bash">
+sudo mysql
+</div><div class="code-block" data-lang="bash">
+UPDATE mysql.user SET Password=PASSWORD('MyNewPass') WHERE User='root';
+</div><p id="-lm17y9_65">Sometimes it can throw an error depending on the mysql version. When that happens, run the following:</p><div class="code-block" data-lang="bash">
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+FLUSH PRIVILEGES;
+</div><p id="-lm17y9_67"><a href="https://stackoverflow.com/questions/7534056/mysql-root-password-change/53968240#53968240" id="-lm17y9_68" data-external="true" rel="noopener noreferrer">Source</a></p></section><section class="chapter"><h3 id="upgrading-mysql-mariadb" data-toc="upgrading-mysql-mariadb">Upgrading MYSQL-MariaDB</h3><p id="-lm17y9_69">Stop the service:</p><div class="code-block" data-lang="bash">
+sudo systemctl stop mariadb
+sudo mysqld_safe --skip-grant-tables --skip-networking &amp;
+</div><p id="-lm17y9_71">Open a new terminal window and run:</p><div class="code-block" data-lang="bash">
+sudo mysql -u root
+</div><div class="code-block" data-lang="bash">
+MariaDB [(none)]&gt; use mysql
+</div><div class="code-block" data-lang="bash">
+MariaDB [mysql]&gt; flush privileges;
+</div><div class="code-block" data-lang="bash">
+MariaDB [mysql]&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY 'the_password_i_want';
+</div><div class="code-block" data-lang="bash">
+MariaDB [mysql]&gt; exit
+</div><p id="-lm17y9_77">To kill the service, we need to find the PID:</p><div class="code-block" data-lang="bash">
+ps -aux | grep mysql
+</div><p id="-lm17y9_79">Then kill the process, run this command for every PID listed:</p><div class="code-block" data-lang="bash">
+kill -9 &lt;PID&gt;
+</div><p id="-lm17y9_81">Now, start the service:</p><div class="code-block" data-lang="bash">
+sudo systemctl start mariadb
+</div><p id="-lm17y9_83"><a href="https://forum.manjaro.org/t/upgrade-mariadb-error/75052/5" id="-lm17y9_84" data-external="true" rel="noopener noreferrer">Source</a></p></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="phpmyadmin" data-toc="phpmyadmin">PhpMyAdmin</h2></div><div class="collapse__content"><p id="-lm17y9_85">Install the required packages:</p><div class="code-block" data-lang="bash">
+sudo pacman -S --needed apache php libnotify phpmyadmin
+</div><p id="-lm17y9_87">Install plug-ins:</p><div class="code-block" data-lang="bash">
+sudo pacman -S php-apache php-cgi php-fpm php-gd php-embed php-intl php-redis php-snmp
+</div></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="docker" data-toc="docker">Docker</h2></div><div class="collapse__content"><section class="chapter"><h3 id="install-docker-from-the-official-repositories" data-toc="install-docker-from-the-official-repositories">Install Docker from the official repositories:</h3><div class="code-block" data-lang="bash">
+sudo pacman -S --needed docker docker-compose docker-scan
+</div><p id="-lm17y9_92">After installing Docker CE, start and enable the Docker Daemon.</p><div class="code-block" data-lang="bash">
+sudo systemctl enable --now docker
+</div><p id="-lm17y9_94">Check the version of the Docker package to confirm it was successfully installed.</p><div class="code-block" data-lang="bash">
+docker version
+</div><p id="-lm17y9_96">The output should be like this:</p><div class="code-block" data-lang="bash">
+Client:
+Version:           20.10.22
+API version:       1.41
+Go version:        go1.19.4
+Git commit:        3a2c30b63a
+Built:             Tue Dec 20 20:43:40 2022
+OS/Arch:           linux/amd64
+Context:           default
+Experimental:      true
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get &quot;http://%2Fvar%2Frun%2Fdocker.sock/v1.24/version&quot;: dial unix /var/run/docker.sock: connect: permission denied
+</div></section><section class="chapter"><h3 id="configuring-docker-for-non-root-user" data-toc="configuring-docker-for-non-root-user">Configuring Docker for Non-Root User</h3><p id="-lm17y9_98">To enable your user account to access and manage docker without administrative privileges, we will add the account to the <code class="code" id="-lm17y9_105">docker group</code>.</p><div class="code-block" data-lang="bash">
+newgrp docker
+</div><div class="code-block" data-lang="bash">
+sudo usermod -aG docker $USER
+</div><p id="-lm17y9_101">Verify that your account is in the <code class="code" id="-lm17y9_106">docker group</code>:</p><div class="code-block" data-lang="bash">
+id -nG
+</div><p id="-lm17y9_103">Try running a Docker command without <code class="code" id="-lm17y9_107">sudo</code>:</p><div class="code-block" data-lang="bash">
+docker run hello-world
+</div></section></div></div></section><div class="last-modified">Last modified: 06 August 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="apps.html" class="navigation-links__prev">Apps</a><a href="gaming.html" class="navigation-links__next">Gaming on Linux</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>

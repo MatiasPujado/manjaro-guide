@@ -1,0 +1,431 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-08-06T01:08:50.346030999"><title>Solutions Archive | Manjaro Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"manjaro","level":0,"title":"Manjaro","anchor":"#manjaro"},{"id":"kernel","level":0,"title":"Kernel","anchor":"#kernel"},{"id":"bottles-flatpak","level":0,"title":"Bottles Flatpak","anchor":"#bottles-flatpak"},{"id":"spotify","level":0,"title":"Spotify","anchor":"#spotify"},{"id":"pipewire","level":0,"title":"Pipewire","anchor":"#pipewire"},{"id":"firefox","level":0,"title":"Firefox","anchor":"#firefox"},{"id":"sonarqube","level":0,"title":"SonarQube","anchor":"#sonarqube"},{"id":"docker","level":0,"title":"Docker","anchor":"#docker"},{"id":"oracle-database","level":0,"title":"Oracle Database","anchor":"#oracle-database"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Solutions Archive | Manjaro Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Manjaro Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/solutions-archive.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Solutions Archive | Manjaro Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/solutions-archive.html#webpage",
+    "url": "writerside-documentation/solutions-archive.html",
+    "name": "Solutions Archive | Manjaro Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Manjaro Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="solutions-archive" data-main-title="Solutions Archive" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Manjaro Guide  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="solutions-archive" id="solutions-archive.md">Solutions Archive</h1><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="manjaro" data-toc="manjaro">Manjaro</h2></div><div class="collapse__content"><section class="chapter"><h3 id="fix-manjaro-s-keyring" data-toc="fix-manjaro-s-keyring">Fix Manjaro's Keyring</h3><p id="ixp9g3_14">When keyring is corrupted, you can fix it by running the following commands:</p><div class="code-block" data-lang="bash">
+sudo pacman -Syy
+sudo pacman-key --refresh-keys
+sudo pacman-key --populate archlinux manjaro
+sudo pacman -Sc
+</div></section><section class="chapter"><h3 id="how-to-import-certificates" data-toc="how-to-import-certificates">How to Import Certificates</h3><p id="ixp9g3_16">To import certificates, you need to store them in the <code class="code" id="ixp9g3_20">~/.ssh/certs</code> directory and run the following commands:</p><div class="code-block" data-lang="bash">
+sudo trust anchor --store ~/.ssh/certs/&lt;cert-name&gt;.crt
+sudo update-ca-trust
+</div><p id="ixp9g3_18">Check your imported certificates:</p><div class="code-block" data-lang="bash">
+awk -v cmd='openssl x509 -noout -subject' '/BEGIN/{close(cmd)};{print | cmd}' &lt; /etc/ssl/certs/ca-certificates.crt
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="kernel" data-toc="kernel">Kernel</h2></div><div class="collapse__content"><section class="chapter"><h3 id="fix-allows-non-root-process-to-bind-to-privileged-ports-443-80" data-toc="fix-allows-non-root-process-to-bind-to-privileged-ports-443-80">Fix allows non-root process to bind to privileged ports (443,80)</h3><p id="ixp9g3_22">Run as root the following command:</p><div class="code-block" data-lang="bash">
+sudo su
+setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/ssh
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="bottles-flatpak" data-toc="bottles-flatpak">Bottles Flatpak</h2></div><div class="collapse__content"><section class="chapter"><h3 id="can-t-enable-steam-proton-manager" data-toc="can-t-enable-steam-proton-manager">Can't enable Steam Proton manager</h3><p id="ixp9g3_25">Starting from version 2022.6.28, Bottles allows you to manage Steam Proton prefixes by enabling the setting of the same name. If you've installed Bottles via Flatpak, it is essential to give it permissions to access the Steam path; otherwise the integration will not be activated. Proceed, according to your Steam installation.</p><div class="code-block" data-lang="bash">
+flatpak override --user com.usebottles.bottles --filesystem=xdg-data/Steam
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="spotify" data-toc="spotify">Spotify</h2></div><div class="collapse__content"><section class="chapter"><h3 id="gpg-key-expired" data-toc="gpg-key-expired">GPG Key expired</h3><div class="code-block" data-lang="bash">
+sudo mv /usr/share/spotify-launcher/keyring.pgp  /usr/share/spotify-launcher/keyring.pgp.old
+sudo wget https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg -O /usr/share/spotify-launcher/keyring.pgp
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="pipewire" data-toc="pipewire">Pipewire</h2></div><div class="collapse__content"><section class="chapter"><h3 id="fix-auto-switching" data-toc="fix-auto-switching">Fix auto-switching</h3><div class="code-block" data-lang="bash">
+rm -rf ~/.config/pulse
+</div></section><section class="chapter"><h3 id="fix-audio-stuttering-account-wide" data-toc="fix-audio-stuttering-account-wide">Fix audio stuttering (account-wide)</h3><div class="code-block" data-lang="bash">
+mkdir -p ~/.config/wireplumber &amp;&amp; cp /usr/share/wireplumber/*.conf ~/.config/wireplumber
+mkdir -p ~/.config/pipewire &amp;&amp; cp /usr/share/pipewire/*.conf ~/.config/pipewire
+</div></section><section class="chapter"><h3 id="fix-audio-stuttering-system-wide" data-toc="fix-audio-stuttering-system-wide">Fix audio stuttering (system-wide)</h3><div class="code-block" data-lang="bash">
+sudo mkdir -p /etc/wireplumber &amp;&amp; sudo cp /usr/share/wireplumber/*.conf /etc/wireplumber
+sudo mkdir -p /etc/pipewire &amp;&amp; sudo cp /usr/share/pipewire/*.conf /etc/pipewire
+</div><section class="chapter"><div class="collapse"><div class="collapse__title"><h4 id="get-allowed-rates-in-your-system" data-toc="get-allowed-rates-in-your-system">Get allowed rates in your system</h4></div><div class="collapse__content"><div class="code-block" data-lang="bash">
+grep -E 'Codec|Audio Output|rates' /proc/asound/card*/codec#*
+</div><p id="ixp9g3_37">Make these changes to the pipewire.conf file to fix the stuttering issue.</p><div class="code-block" data-lang="bash">
+# Daemon config file for PipeWire version &quot;1.2.1&quot; #
+#
+# Copy and edit this file in /etc/pipewire for system-wide changes
+# or in ~/.config/pipewire for local changes.
+#
+# It is also possible to place a file with an updated section in
+# /etc/pipewire/pipewire.conf.d/ for system-wide changes or in
+# ~/.config/pipewire/pipewire.conf.d/ for local changes.
+#
+
+context.properties = {
+    ## Configure properties in the system.
+    #library.name.system                   = support/libspa-support
+    #context.data-loop.library.name.system = support/libspa-support
+    #support.dbus                          = true
+    #link.max-buffers                      = 64
+    link.max-buffers                       = 16                       # version &lt; 3 clients can't handle more
+    #mem.warn-mlock                        = false
+    #mem.allow-mlock                       = true
+    #mem.mlock-all                         = false
+    #clock.power-of-two-quantum            = true
+    #log.level                             = 2
+    #cpu.zero.denormals                    = false
+
+    #loop.rt-prio = -1            # -1 = use module-rt prio, 0 disable rt
+    #loop.class = data.rt
+    #thread.affinity = [ 0 1 ]    # optional array of CPUs
+    #context.num-data-loops = 1   # -1 = num-cpus, 0 = no data loops
+    #
+    #context.data-loops = [
+    #    {   loop.rt-prio = -1
+    #        loop.class = [ data.rt audio.rt ]
+    #        #library.name.system = support/libspa-support
+    #        thread.name = data-loop.0
+    #        #thread.affinity = [ 0 1 ]    # optional array of CPUs
+    #    }
+    #]
+
+    core.daemon = true              # listening for socket connections
+    core.name   = pipewire-0        # core name and socket name
+
+    ## Properties for the DSP configuration.
+    #default.clock.rate          = 48000
+    default.clock.rate          = 48000
+    #default.clock.allowed-rates = [ 48000 ]
+    default.clock.allowed-rates = [ 32000 44100 48000 88200 96000 192000 ]
+    #default.clock.quantum       = 1024
+    #default.clock.min-quantum   = 32
+    default.clock.min-quantum   = 16
+    #default.clock.max-quantum   = 2048
+    #default.clock.quantum-limit = 8192
+    #default.clock.quantum-floor = 4
+    #default.video.width         = 640
+    #default.video.height        = 480
+    #default.video.rate.num      = 25
+    #default.video.rate.denom    = 1
+    #
+    #settings.check-quantum      = false
+    #settings.check-rate         = false
+
+    # keys checked below to disable module loading
+    module.x11.bell = true
+    # enables autoloading of access module, when disabled an alternative
+    # access module needs to be loaded.
+    module.access = true
+    # enables autoloading of module-jackdbus-detect
+    module.jackdbus-detect = true
+}
+
+context.properties.rules = [
+    {   matches = [ { cpu.vm.name = !null } ]
+        actions = {
+            update-props = {
+                # These overrides are only applied when running in a vm.
+                default.clock.min-quantum = 1024
+	    }
+        }
+    }
+]
+
+context.spa-libs = {
+    #&lt;factory-name regex&gt; = &lt;library-name&gt;
+    #
+    # Used to find spa factory names. It maps an spa factory name
+    # regular expression to a library name that should contain
+    # that factory.
+    #
+    audio.convert.* = audioconvert/libspa-audioconvert
+    avb.*           = avb/libspa-avb
+    api.alsa.*      = alsa/libspa-alsa
+    api.v4l2.*      = v4l2/libspa-v4l2
+    api.libcamera.* = libcamera/libspa-libcamera
+    api.bluez5.*    = bluez5/libspa-bluez5
+    api.vulkan.*    = vulkan/libspa-vulkan
+    api.jack.*      = jack/libspa-jack
+    support.*       = support/libspa-support
+    video.convert.* = videoconvert/libspa-videoconvert
+    #videotestsrc   = videotestsrc/libspa-videotestsrc
+    #audiotestsrc   = audiotestsrc/libspa-audiotestsrc
+}
+
+context.modules = [
+    #{ name = &lt;module-name&gt;
+    #    ( args  = { &lt;key&gt; = &lt;value&gt; ... } )
+    #    ( flags = [ ( ifexists ) ( nofail ) ] )
+    #    ( condition = [ { &lt;key&gt; = &lt;value&gt; ... } ... ] )
+    #}
+    #
+    # Loads a module with the given parameters.
+    # If ifexists is given, the module is ignored when it is not found.
+    # If nofail is given, module initialization failures are ignored.
+    # If condition is given, the module is loaded only when the context
+    # properties all match the match rules.
+    #
+
+    # Uses realtime scheduling to boost the audio thread priorities. This uses
+    # RTKit if the user doesn't have permission to use regular realtime
+    # scheduling. You can also clamp utilisation values to improve scheduling
+    # on embedded and heterogeneous systems, e.g. Arm big.LITTLE devices.
+    { name = libpipewire-module-rt
+        args = {
+            nice.level    = -11
+            rt.prio       = 88
+            #rt.time.soft = -1
+            #rt.time.hard = -1
+            #uclamp.min = 0
+            #uclamp.max = 1024
+        }
+        flags = [ ifexists nofail ]
+    }
+
+    # The native communication protocol.
+    { name = libpipewire-module-protocol-native
+        args = {
+            # List of server Unix sockets, and optionally permissions
+            #sockets = [ { name = &quot;pipewire-0&quot; }, { name = &quot;pipewire-0-manager&quot; } ]
+        }
+    }
+
+    # The profile module. Allows application to access profiler
+    # and performance data. It provides an interface that is used
+    # by pw-top and pw-profiler.
+    { name = libpipewire-module-profiler }
+
+    # Allows applications to create metadata objects. It creates
+    # a factory for Metadata objects.
+    { name = libpipewire-module-metadata }
+
+    # Creates a factory for making devices that run in the
+    # context of the PipeWire server.
+    { name = libpipewire-module-spa-device-factory }
+
+    # Creates a factory for making nodes that run in the
+    # context of the PipeWire server.
+    { name = libpipewire-module-spa-node-factory }
+
+    # Allows creating nodes that run in the context of the
+    # client. Is used by all clients that want to provide
+    # data to PipeWire.
+    { name = libpipewire-module-client-node }
+
+    # Allows creating devices that run in the context of the
+    # client. Is used by the session manager.
+    { name = libpipewire-module-client-device }
+
+    # The portal module monitors the PID of the portal process
+    # and tags connections with the same PID as portal
+    # connections.
+    { name = libpipewire-module-portal
+        flags = [ ifexists nofail ]
+    }
+
+    # The access module can perform access checks and block
+    # new clients.
+    { name = libpipewire-module-access
+        args = {
+            # Socket-specific access permissions
+            #access.socket = { pipewire-0 = &quot;default&quot;, pipewire-0-manager = &quot;unrestricted&quot; }
+
+            # Deprecated legacy mode (not socket-based),
+            # for now enabled by default if access.socket is not specified
+            #access.legacy = true
+        }
+        condition = [ { module.access = true } ]
+    }
+
+    # Makes a factory for wrapping nodes in an adapter with a
+    # converter and resampler.
+    { name = libpipewire-module-adapter }
+
+    # Makes a factory for creating links between ports.
+    { name = libpipewire-module-link-factory }
+
+    # Provides factories to make session manager objects.
+    { name = libpipewire-module-session-manager }
+
+    # Use libcanberra to play X11 Bell
+    { name = libpipewire-module-x11-bell
+        args = {
+            #sink.name = &quot;@DEFAULT_SINK@&quot;
+            #sample.name = &quot;bell-window-system&quot;
+            #x11.display = null
+            #x11.xauthority = null
+        }
+        flags = [ ifexists nofail ]
+        condition = [ { module.x11.bell = true } ]
+    }
+    { name = libpipewire-module-jackdbus-detect
+        args = {
+            #jack.library     = libjack.so.0
+            #jack.server      = null
+            #jack.client-name = PipeWire
+            #jack.connect     = true
+            #tunnel.mode      = duplex  # source|sink|duplex
+            source.props = {
+                #audio.channels = 2
+		#midi.ports = 1
+                #audio.position = [ FL FR ]
+                # extra sink properties
+            }
+            sink.props = {
+                #audio.channels = 2
+		#midi.ports = 1
+                #audio.position = [ FL FR ]
+                # extra sink properties
+            }
+        }
+        flags = [ ifexists nofail ]
+        condition = [ { module.jackdbus-detect = true } ]
+    }
+]
+
+context.objects = [
+    #{ factory = &lt;factory-name&gt;
+    #    ( args  = { &lt;key&gt; = &lt;value&gt; ... } )
+    #    ( flags = [ ( nofail ) ] )
+    #    ( condition = [ { &lt;key&gt; = &lt;value&gt; ... } ... ] )
+    #}
+    #
+    # Creates an object from a PipeWire factory with the given parameters.
+    # If nofail is given, errors are ignored (and no object is created).
+    # If condition is given, the object is created only when the context properties
+    # all match the match rules.
+    #
+    #{ factory = spa-node-factory   args = { factory.name = videotestsrc node.name = videotestsrc node.description = videotestsrc &quot;Spa:Pod:Object:Param:Props:patternType&quot; = 1 } }
+    #{ factory = spa-device-factory args = { factory.name = api.jack.device foo=bar } flags = [ nofail ] }
+    #{ factory = spa-device-factory args = { factory.name = api.alsa.enum.udev } }
+    #{ factory = spa-node-factory   args = { factory.name = api.alsa.seq.bridge node.name = Internal-MIDI-Bridge } }
+    #{ factory = adapter            args = { factory.name = audiotestsrc node.name = my-test node.description = audiotestsrc } }
+    #{ factory = spa-node-factory   args = { factory.name = api.vulkan.compute.source node.name = my-compute-source } }
+
+    # A default dummy driver. This handles nodes marked with the &quot;node.always-process&quot;
+    # property when no other driver is currently active. JACK clients need this.
+    { factory = spa-node-factory
+        args = {
+            factory.name    = support.node.driver
+            node.name       = Dummy-Driver
+            node.group      = pipewire.dummy
+            node.sync-group  = sync.dummy
+            priority.driver = 20000
+            #clock.id       = monotonic # realtime | tai | monotonic-raw | boottime
+            #clock.name     = &quot;clock.system.monotonic&quot;
+        }
+    }
+    { factory = spa-node-factory
+        args = {
+            factory.name    = support.node.driver
+            node.name       = Freewheel-Driver
+            priority.driver = 19000
+            node.group      = pipewire.freewheel
+            node.sync-group  = sync.dummy
+            node.freewheel  = true
+            #freewheel.wait = 10
+        }
+    }
+
+    # This creates a new Source node. It will have input ports
+    # that you can link, to provide audio for this source.
+    #{ factory = adapter
+    #    args = {
+    #        factory.name     = support.null-audio-sink
+    #        node.name        = &quot;my-mic&quot;
+    #        node.description = &quot;Microphone&quot;
+    #        media.class      = &quot;Audio/Source/Virtual&quot;
+    #        audio.position   = &quot;FL,FR&quot;
+    #        monitor.passthrough = true
+    #    }
+    #}
+
+    # This creates a single PCM source device for the given
+    # alsa device path hw:0. You can change source to sink
+    # to make a sink in the same way.
+    #{ factory = adapter
+    #    args = {
+    #        factory.name           = api.alsa.pcm.source
+    #        node.name              = &quot;alsa-source&quot;
+    #        node.description       = &quot;PCM Source&quot;
+    #        media.class            = &quot;Audio/Source&quot;
+    #        api.alsa.path          = &quot;hw:0&quot;
+    #        api.alsa.period-size   = 1024
+    #        api.alsa.headroom      = 0
+    #        api.alsa.disable-mmap  = false
+    #        api.alsa.disable-batch = false
+    #        audio.format           = &quot;S16LE&quot;
+    #        audio.rate             = 48000
+    #        audio.channels         = 2
+    #        audio.position         = &quot;FL,FR&quot;
+    #    }
+    #}
+
+    # Use the metadata factory to create metadata and some default values.
+    #{ factory = metadata
+    #    args = {
+    #        metadata.name = my-metadata
+    #        metadata.values = [
+    #            { key = default.audio.sink   value = { name = somesink } }
+    #            { key = default.audio.source value = { name = somesource } }
+    #        ]
+    #    }
+    #}
+]
+
+context.exec = [
+    #{   path = &lt;program-name&gt;
+    #    ( args = &quot;&lt;arguments&gt;&quot; | [ &lt;arg1&gt; &lt;arg2&gt; ... ] )
+    #    ( condition = [ { &lt;key&gt; = &lt;value&gt; ... } ... ] )
+    #}
+    #
+    # Execute the given program with arguments.
+    # If condition is given, the program is executed only when the context
+    # properties all match the match rules.
+    #
+    # You can optionally start the session manager here,
+    # but it is better to start it as a systemd service.
+    # Run the session manager with -h for options.
+    #
+    #{ path = &quot;/usr/bin/pipewire-media-session&quot; args = &quot;&quot;
+    #  condition = [ { exec.session-manager = null } { exec.session-manager = true } ] }
+    #
+    # You can optionally start the pulseaudio-server here as well
+    # but it is better to start it as a systemd service.
+    # It can be interesting to start another daemon here that listens
+    # on another address with the -a option (eg. -a tcp:4713).
+    #
+    #{ path = &quot;/usr/bin/pipewire&quot; args = [ &quot;-c&quot; &quot;pipewire-pulse.conf&quot; ]
+    #  condition = [ { exec.pipewire-pulse = null } { exec.pipewire-pulse = true } ] }
+]
+</div></div></div></section></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="firefox" data-toc="firefox">Firefox</h2></div><div class="collapse__content"><p id="ixp9g3_39">In 'about:config' set the following variables:</p><section class="chapter"><h3 id="fix-video-playback" data-toc="fix-video-playback">Fix Video Playback</h3><div class="code-block" data-lang="shell">
+general.useragent.override
+</div><p id="ixp9g3_43">Select 'String' and click '+' and add:</p><div class="code-block" data-lang="shell">
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0
+</div></section><section class="chapter"><h3 id="fix-csv-password-file-loading" data-toc="fix-csv-password-file-loading">Fix CSV Password File Loading</h3><p id="ixp9g3_45">Set variable 'TRUE' to enable csv file importing.</p><div class="code-block" data-lang="shell">
+signon.management.page.fileImport.enabled
+</div><p id="ixp9g3_47">Set variable to 'TRUE' to force Firefox to read the csv file.</p><div class="code-block" data-lang="shell">
+security.allow_eval_in_parent_process
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="sonarqube" data-toc="sonarqube">SonarQube</h2></div><div class="collapse__content"><p id="ixp9g3_49">Get all limits:</p><div class="code-block" data-lang="bash">
+ulimit -a
+</div><section class="chapter"><h3 id="fix" data-toc="fix">Fix</h3><div class="code-block" data-lang="bash">
+sudo vim /etc/sysctl.d/99-sysctl.conf
+</div><p id="ixp9g3_53">Add the following lines:</p><div class="code-block" data-lang="bash">
+vm.swappiness=10
+vm.max_map_count=262144
+fs.file-max=131072
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="docker" data-toc="docker">Docker</h2></div><div class="collapse__content"><section class="chapter"><h3 id="fix-library-initialization-failed-unable-to-allocate-file-descriptor-table-out-of-memory-error" data-toc="fix-library-initialization-failed-unable-to-allocate-file-descriptor-table-out-of-memory-error">Fix library initialization failed, unable to allocate file descriptor table, out of memory error</h3><div class="code-block" data-lang="bash">
+sudo vim /usr/lib/systemd/system/docker.service
+</div><p id="ixp9g3_57">Choose one value (65536:65536 or 131072:131072) setting and add it to the file:</p><div class="code-block" data-lang="bash">
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd --default-ulimit nofile=&lt;value&gt;:&lt;value&gt; -H fd://
+</div><p id="ixp9g3_59">Save and run:</p><div class="code-block" data-lang="bash">
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+</div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="oracle-database" data-toc="oracle-database">Oracle Database</h2></div><div class="collapse__content"><section class="chapter"><h3 id="how-to-run-oracle-database-on-manjaro" data-toc="how-to-run-oracle-database-on-manjaro">How to run Oracle Database on Manjaro</h3><p id="ixp9g3_65">Find a user's <code class="code" id="ixp9g3_73">UID</code>:</p><div class="code-block" data-lang="bash">
+id -u &lt;username&gt;
+</div><p id="ixp9g3_67">Find a user's <code class="code" id="ixp9g3_74">GID</code>:</p><div class="code-block" data-lang="bash">
+id -g &lt;username&gt;
+</div><p id="ixp9g3_69">List all groups a user belongs to:</p><div class="code-block" data-lang="bash">
+id -G &lt;username&gt;
+</div><p id="ixp9g3_71">If you wish to see the <code class="code" id="ixp9g3_75">UID</code> and all groups associated with a user, enter <code class="code" id="ixp9g3_76">id</code> without any options, as follows:</p><div class="code-block" data-lang="bash">
+id &lt;username&gt;
+</div></section><section class="chapter"><h3 id="create-a-group-with-specific-id" data-toc="create-a-group-with-specific-id">Create a group with specific ID</h3><div class="code-block" data-lang="bash">
+sudo groupadd -g 54321 oinstall
+</div></section><section class="chapter"><h3 id="create-a-user-account-with-specific-id-and-groups-without-a-home-directory" data-toc="create-a-user-account-with-specific-id-and-groups-without-a-home-directory">Create a user account with specific ID and groups, without a Home directory</h3><div class="code-block" data-lang="bash">
+sudo useradd -Mu 54321 -G oinstall,docker,dev,matias,admin,coder oracle
+</div></section><section class="chapter"><h3 id="then-lock-the-account-to-prevent-logging-in" data-toc="then-lock-the-account-to-prevent-logging-in">Then lock the account to prevent logging in</h3><div class="code-block" data-lang="bash">
+sudo usermod -L oracle
+</div></section></div></div></section><div class="last-modified">Last modified: 06 August 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="linux-kernel.html" class="navigation-links__prev">Linux Kernel</a><a href="references.html" class="navigation-links__next">References</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>

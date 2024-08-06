@@ -1,0 +1,288 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-08-06T01:08:50.345665662"><title>Setting up Manjaro | Manjaro Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"setup-nautilus-columns","level":0,"title":"Setup Nautilus columns","anchor":"#setup-nautilus-columns"},{"id":"system-environment-variables","level":0,"title":"System Environment Variables","anchor":"#system-environment-variables"},{"id":"set-system-wide-permissions","level":0,"title":"Set system-wide permissions","anchor":"#set-system-wide-permissions"},{"id":"setup-users-accounts","level":0,"title":"Setup users accounts","anchor":"#setup-users-accounts"},{"id":"mount-partitions","level":0,"title":"Mount partitions","anchor":"#mount-partitions"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Setting up Manjaro | Manjaro Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Manjaro Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/setup-manjaro.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Setting up Manjaro | Manjaro Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/setup-manjaro.html#webpage",
+    "url": "writerside-documentation/setup-manjaro.html",
+    "name": "Setting up Manjaro | Manjaro Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Manjaro Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="setup-manjaro" data-main-title="Setting up Manjaro" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Manjaro Guide  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="setup-manjaro" id="setup-manjaro.md">Setting up Manjaro</h1><section class="chapter"><h2 id="setup-nautilus-columns" data-toc="setup-nautilus-columns">Setup Nautilus columns</h2><p id="z5hu0ec_8">Under <span class="control" id="z5hu0ec_12">/org/gnome/nautilus/list-view/default-visible-columns</span> add as custom value:</p><div class="code-block" data-lang="bash">
+['name', 'size', 'owner', 'group', 'permissions', 'date_modified', 'detailed_type', 'starred']
+</div><p id="z5hu0ec_10">Under <span class="control" id="z5hu0ec_13">/org/gnome/nautilus/list-view/default-column-order</span> add as custom value:</p><div class="code-block" data-lang="bash">
+['name', 'size', 'owner', 'group', 'permissions', 'date_modified_with_time', 'date_accessed', 'date_created', 'recency', 'type', 'mime_type', 'where', 'date_modified', 'starred']
+</div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="system-environment-variables" data-toc="system-environment-variables">System Environment Variables</h2></div><div class="collapse__content"><p id="z5hu0ec_14">Adapt the following example to your needs and add it to the <code class="code" id="z5hu0ec_17">/etc/environment</code> file.</p><div class="code-block" data-lang="bash">
+sudo vim /etc/environment
+</div><div class="code-block" data-lang="plaintext">
+#
+# This file is parsed by pam_env module
+#
+# Syntax: simple &quot;KEY=VAL&quot; pairs on separate lines
+#
+# Manjaro defaults are now in /etc/profile.d/
+#
+
+EDITOR=/usr/bin/vim
+
+# https://doc.qt.io/qt-5/highdpi.html#high-dpi-support-in-qt
+QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+# To use QGnomePlaform with AdwaitaQt style, comment out the following keys:
+
+# Available options: gtk2, gnome, kde, qt5ct, xcb
+
+# Note: Don't use in combination with QT_STYLE_OVERRIDE
+QT_QPA_PLATFORMTHEME=&quot;qt5ct&quot;
+
+# Available styles: HighContrastInverse, HighContrast, Adwaita-HighContrastInverse,
+# Adwaita-HighContrast, Adwaita-Dark, Adwaita, kvantum-dark, kvantum, qt5ct-style,
+# Windows, Fusion
+
+# Note: Don't use in combination with QT_QPA_PLATFORMTHEME
+#QT_STYLE_OVERRIDE=&quot;&quot;
+
+## JAVA
+JAVA_HOME=/usr/lib/jvm/jdk1.8.0_411
+JRE_HOME=/usr/lib/jvm/jdk1.8.0_411/jre
+JAVAFX=/opt/javafx/jdk-17.0.11
+
+## MAVEN
+MAVEN_HOME=/opt/apache-maven-3.9.8
+M2_HOME=$HOME/.m2/wrapper/dists/
+
+## GRADLE
+GRADLE_HOME=/opt/gradle-8.8
+
+## TOMCAT
+CATALINA_HOME=/opt/apache-tomcat-9.0.80
+CATALINA_BASE=/opt/apache-tomcat-9.0.80
+
+## GO
+GOPATH=/opt/go
+GOROOT=/opt/go
+
+## PYTHON
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+
+## ORACLE DB
+ORACLE_HOME=/opt/oracle
+LD_LIBRARY_PATH=$ORACLE_HOME/instantclient
+
+## CITRIX
+ICAROOT=/opt/Citrix/ICAClient
+
+## VSCODE
+VSCODE_HOME=/opt/vscode/vscode_cli
+
+## NODE
+NODE_HOME=$HOME/.config/nvm/versions/node/v18.20.3
+
+## ROCM
+ROCM_PATH=/opt/rocm
+
+## SYSTEM
+CGO_ENABLED=0
+RADV_PERFTEST=aco
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/mysql/bin:$JAVA_HOME/bin:$JRE_HOME/bin:$JAVAFX/lib:$JAVAFX/jmods:$JAVAFX/javadoc:$MAVEN_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$ORACLE_HOME:$ORACLE_HOME/sqldeveloper:$ORACLE_HOME/sqldeveloper/sqldeveloper/bin:$LD_LIBRARY_PATH:$CATALINA_BASE:$CATALINA_HOME/bin:$GOPATH/bin:$GOROOT/bin:$VIRTUALENVWRAPPER_PYTHON:$ICAROOT:$VSCODE_HOME:$NODE_HOME/bin
+</div></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h2 id="set-system-wide-permissions" data-toc="set-system-wide-permissions">Set system-wide permissions</h2></div><div class="collapse__content"><br><aside class="prompt" data-type="warning" data-title="" id="z5hu0ec_19"><p id="z5hu0ec_27"><span class="control" id="z5hu0ec_29">Warning</span></p><p id="z5hu0ec_28">Be careful when editing the sudoers file. Incorrect syntax can lock you out of your system. Always use the <code class="code" id="z5hu0ec_30">visudo</code> command to edit the sudoers file. This command checks the syntax of the file before saving it.</p></aside><br><aside class="prompt" data-type="note" data-title="" id="z5hu0ec_21"><p id="z5hu0ec_31"><span class="control" id="z5hu0ec_36">Note</span></p><p id="z5hu0ec_32">If visudo does not open with the desired text editor, look for this line in /etc/sudoers and comment it out:</p><div class="code-block" data-lang="plaintext">
+Defaults!/usr/bin/visudo env_keep += &quot;SUDO_EDITOR EDITOR VISUAL&quot;
+</div><p id="z5hu0ec_34">A less permanent way to fix this is to run the following command:</p><div class="code-block" data-lang="plaintext">
+sudo EDITOR=/usr/bin/vim visudo -f /etc/sudoers.d/sudoers
+</div></aside><br><p id="z5hu0ec_23">This is my sudoers file, it is not ideal, but it suits my needs. <span class="control" id="z5hu0ec_37">Do not copy it blindly and adapt it to your needs.</span></p><br><div class="code-block" data-lang="bash">
+sudo visudo -f /etc/sudoers.d/sudoers
+</div><div class="code-block" data-lang="plaintext">
+## sudoers file.
+##
+## This file MUST be edited with the 'visudo' command as root.
+## Failure to use 'visudo' may result in syntax or file permission errors
+## that prevent sudo from running.
+##
+## See the sudoers man page for the details on how to write a sudoers file.
+##
+
+##
+## Host alias specification
+##
+## Groups of machines. These may include host names (optionally with wildcards),
+## IP addresses, network numbers or netgroups.
+# Host_Alias	WEBSERVERS = www1, www2, www3
+
+##
+## User alias specification
+##
+## Groups of users.  These may consist of user names, uids, Unix groups,
+## or netgroups.
+# User_Alias	ADMINS = millert, dowdy, mikef
+
+##
+## Cmnd alias specification
+##
+## Groups of commands.  Often used to group related commands together.
+# Cmnd_Alias	PROCESSES = /usr/bin/nice, /bin/kill, /usr/bin/renice, \
+# 			    /usr/bin/pkill, /usr/bin/top
+#
+# Cmnd_Alias	REBOOT = /sbin/halt, /sbin/reboot, /sbin/poweroff
+#
+# Cmnd_Alias	DEBUGGERS = /usr/bin/gdb, /usr/bin/lldb, /usr/bin/strace, \
+# 			    /usr/bin/truss, /usr/bin/bpftrace, \
+# 			    /usr/bin/dtrace, /usr/bin/dtruss
+#
+# Cmnd_Alias	PKGMAN = /usr/bin/apt, /usr/bin/dpkg, /usr/bin/rpm, \
+# 			 /usr/bin/yum, /usr/bin/dnf,  /usr/bin/zypper, \
+# 			 /usr/bin/pacman
+
+##
+## Defaults specification
+##
+## Preserve editor environment variables for visudo.
+## To preserve these for all commands, remove the &quot;!visudo&quot; qualifier.
+## Defaults!/usr/bin/visudo env_keep += &quot;SUDO_EDITOR EDITOR VISUAL&quot;
+##
+## Use a hard-coded PATH instead of the user's to find commands.
+## This also helps prevent poorly written scripts from running
+## artbitrary commands under sudo.
+Defaults secure_path=&quot;/usr/local/sbin:/usr/local/bin:/usr/bin&quot;
+##
+## You may wish to keep some of the following environment variables
+## when running commands via sudo.
+##
+## Locale settings
+# Defaults env_keep += &quot;LANG LANGUAGE LINGUAS LC_* _XKB_CHARSET&quot;
+##
+## Run X applications through sudo; HOME is used to find the
+## .Xauthority file.  Note that other programs use HOME to find   
+## configuration files and this may lead to privilege escalation!
+# Defaults env_keep += &quot;HOME&quot;
+##
+## X11 resource path settings
+# Defaults env_keep += &quot;XAPPLRESDIR XFILESEARCHPATH XUSERFILESEARCHPATH&quot;
+##
+## Desktop path settings
+# Defaults env_keep += &quot;QTDIR KDEDIR&quot;
+##
+## Allow sudo-run commands to inherit the callers' ConsoleKit session
+# Defaults env_keep += &quot;XDG_SESSION_COOKIE&quot;
+##
+## Uncomment to enable special input methods.  Care should be taken as
+## this may allow users to subvert the command being run via sudo.
+# Defaults env_keep += &quot;XMODIFIERS GTK_IM_MODULE QT_IM_MODULE QT_IM_SWITCHER&quot;
+##
+## Uncomment to restore the historic behavior where a command is run in
+## the user's own terminal.
+# Defaults !use_pty
+##
+## Uncomment to send mail if the user does not enter the correct password.
+# Defaults mail_badpass
+##
+## Uncomment to enable logging of a command's output, except for
+## sudoreplay and reboot.  Use sudoreplay to play back logged sessions.
+## Sudo will create up to 2,176,782,336 I/O logs before recycling them.
+## Set maxseq to a smaller number if you don't have unlimited disk space.
+# Defaults log_output
+# Defaults!/usr/bin/sudoreplay !log_output
+# Defaults!/usr/local/bin/sudoreplay !log_output
+# Defaults!REBOOT !log_output
+# Defaults maxseq = 1000
+##
+## Uncomment to disable intercept and log_subcmds for debuggers and
+## tracers.  Otherwise, anything that uses ptrace(2) will be unable
+## to run under sudo if intercept_type is set to &quot;trace&quot;.
+# Defaults!DEBUGGERS !intercept, !log_subcmds
+##
+## Uncomment to disable intercept and log_subcmds for package managers.
+## Some package scripts run a huge number of commands, which is made
+## slower by these options and also can clutter up the logs.
+# Defaults!PKGMAN !intercept, !log_subcmds
+
+##
+## Runas alias specification
+##
+
+##
+## User privilege specification
+##
+root ALL=(ALL:ALL) ALL
+
+## Uncomment to allow members of group wheel to execute any command
+# %wheel ALL=(ALL:ALL) ALL
+
+## Same thing without a password
+# %wheel ALL=(ALL:ALL) NOPASSWD: ALL
+
+## Uncomment to allow members of group sudo to execute any command
+# %sudo	ALL=(ALL:ALL) ALL
+%sudo	ALL=(ALL:ALL) ALL
+%dev	ALL=(ALL:ALL) ALL
+
+## Uncomment to allow any user to run sudo if they know the password
+## of the user they are running the command as (root by default).
+# Defaults targetpw  # Ask for the password of the target user
+# ALL ALL=(ALL:ALL) ALL  # WARNING: only use this together with 'Defaults targetpw'
+
+## Read drop-in files from /etc/sudoers.d
+# @includedir /etc/sudoers.d
+admin ALL=(ALL:ALL) NOPASSWD: ALL
+matias ALL=(ALL:ALL) ALL
+coder ALL=(ALL:ALL) ALL
+</div></div></div></section><section class="chapter"><h2 id="setup-users-accounts" data-toc="setup-users-accounts">Setup users accounts</h2><section class="chapter"><h3 id="create-new-groups" data-toc="create-new-groups">Create new groups</h3><div class="code-block" data-lang="bash">
+sudo groupadd dev
+sudo groupadd sudo
+</div></section><section class="chapter"><h3 id="add-user-to-groups" data-toc="add-user-to-groups">Add user to groups</h3><p id="z5hu0ec_42">Adapt the following example to your needs.</p><div class="code-block" data-lang="bash">
+sudo usermod -aG sudo,dev,matias,coder,admin,audio,input,lp,storage,users,network,power,realtime coder
+sudo usermod -aG sudo,dev,matias,coder,admin,audio,input,lp,storage,users,network,power,realtime matias
+sudo usermod -aG sudo,dev,matias,coder,admin,audio,input,lp,storage,users,network,power,realtime admin
+</div></section><section class="chapter"><h3 id="change-users-main-group" data-toc="change-users-main-group">Change users main group</h3><p id="z5hu0ec_44">To keep my accounts organized, I change the main group of the users to the <code class="code" id="z5hu0ec_46">dev</code> group.</p><div class="code-block" data-lang="bash">
+sudo usermod -g dev coder
+sudo usermod -g dev matias
+sudo usermod -g dev admin
+</div></section></section><section class="chapter"><h2 id="mount-partitions" data-toc="mount-partitions">Mount partitions</h2><p id="z5hu0ec_47">This section is about mounting partitions in the <code class="code" id="z5hu0ec_59">/etc/fstab</code> file. An alternative is to use the <code class="code" id="z5hu0ec_60">Disks</code> application, especially if they weren't included during the OS installation process.</p><p id="z5hu0ec_48">First, we need to identify the partitions we want to mount. Use the <code class="code" id="z5hu0ec_61">lsblk</code> command to list all the block devices:</p><div class="code-block" data-lang="bash">
+lsblk
+</div><p id="z5hu0ec_50">Then we will use the <code class="code" id="z5hu0ec_62">blkid</code> command to get the UUID of the partition:</p><div class="code-block" data-lang="bash">
+sudo blkid
+</div><p id="z5hu0ec_52">Now we can edit the <code class="code" id="z5hu0ec_63">/etc/fstab</code> file:</p><div class="code-block" data-lang="bash">
+sudo vim /etc/fstab
+</div><br><aside class="prompt" data-type="note" data-title="" id="z5hu0ec_55"><p id="z5hu0ec_64"><span class="control" id="z5hu0ec_66">Note</span></p><p id="z5hu0ec_65">In the last line of the '/etc/fstab' file, I am mounting a shared folder from another Linux system in my network.</p></aside><br><p id="z5hu0ec_57">This is an example of how to add a partition to the <code class="code" id="z5hu0ec_67">/etc/fstab</code> file:</p><div class="code-block" data-lang="plaintext">
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# systemd generates mount units based on this file, see systemd.mount(5).
+# Please run 'systemctl daemon-reload' after making changes here.
+#
+# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;
+# / was on /dev/nvme0n1p3 during installation
+UUID=2a1db98a-de36-4491-b799-e7fd9607498a /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/nvme0n1p1 during installation
+UUID=5F4A-0896  /boot/efi       vfat    umask=0077      0       1
+# /home was on /dev/nvme0n1p4 during installation
+UUID=66afd3f0-a5da-4c6e-a30d-f3f20fa02e83 /home           ext4    defaults        0       2
+# swap was on /dev/nvme0n1p2 during installation
+UUID=f7958b58-76ef-4824-9b3f-7c2131390585 none            swap    sw              0       0
+
+#
+# LVM
+# Media_VG
+# MediaCenter with UUID=&quot;daf6302c-dd08-4e2e-a7f1-24a9511bbf93&quot;
+UUID=&quot;daf6302c-dd08-4e2e-a7f1-24a9511bbf93&quot;	/media/MediaCenter	ext4	defaults	0	0
+# VMs with UUID=&quot;a28a5163-da8c-4791-843d-5f5fced9b4db&quot;
+UUID=&quot;a28a5163-da8c-4791-843d-5f5fced9b4db&quot;	/media/VMs	ext4	defaults	0	0
+#
+#Standard Partitions
+# Games with UUID=&quot;a90d6e24-6af9-4b14-937e-b359614fb787&quot;
+UUID=&quot;a90d6e24-6af9-4b14-937e-b359614fb787&quot;	/media/Games	ext4	defaults	0	0
+# Vault with UUID=&quot;a9be72c3-3142-43f8-a419-ca6b2ff52c0f&quot;
+/dev/sdc1	/media/Vault	ext4	defaults	0	0
+# Work with UUID=&quot;5e255cc3-1733-45e0-a709-a0174a417f6b&quot;
+/dev/sdd1	/media/Work	ext4	defaults	0	0
+# Dell Shared-Folder
+\\192.168.100.100\SharedFolder  /media/Dell  cifs  credentials=/etc/win-credentials,uid=1001,gid=1001,dir_mode=0774,file_mode=0774 0       0
+</div></section><div class="last-modified">Last modified: 06 August 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="first-steps.html" class="navigation-links__prev">First Steps</a><a href="terminal.html" class="navigation-links__next">Terminal Emulator</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-08-06T01:08:50.353403599"><title>Network Settings | Manjaro Guide</title><script type="application/json" id="virtual-toc-data">[{"id":"dns","level":0,"title":"DNS","anchor":"#dns"},{"id":"firewall-ufw","level":0,"title":"FIREWALL UFW","anchor":"#firewall-ufw"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Network Settings | Manjaro Guide"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Manjaro Guide Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/network.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Network Settings | Manjaro Guide"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/network.html#webpage",
+    "url": "writerside-documentation/network.html",
+    "name": "Network Settings | Manjaro Guide",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Manjaro Guide Help"
+}</script><!-- End Schema.org --></head><body data-id="network" data-main-title="Network Settings" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Manjaro Guide  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="network" id="network.md">Network Settings</h1><section class="chapter"><h2 id="dns" data-toc="dns">DNS</h2><p id="z4gz5jo_5">DNS (Domain Name System) is a system that translates domain names to IP addresses. DNS servers are used to resolve domain names to IP addresses. The DNS server is responsible for resolving domain names to IP addresses. The DNS server is responsible for resolving domain names to IP addresses.</p><section class="chapter"><h3 id="google-ipv4" data-toc="google-ipv4">Google IPv4</h3><div class="code-block" data-lang="shell">
+8.8.8.8, 8.8.4.4
+</div></section><section class="chapter"><h3 id="google-ipv6" data-toc="google-ipv6">Google IPv6</h3><div class="code-block" data-lang="shell">
+2001:4860:4860:0:0:0:0:8888, 2001:4860:4860:0:0:0:0:8844
+</div></section><section class="chapter"><h3 id="cloudflare-ipv4" data-toc="cloudflare-ipv4">Cloudflare IPv4</h3><div class="code-block" data-lang="shell">
+1.1.1.1, 1.0.0.1
+</div></section><section class="chapter"><h3 id="cloudflare-ipv6" data-toc="cloudflare-ipv6">Cloudflare IPv6</h3><div class="code-block" data-lang="shell">
+2606:4700:4700:0:0:0:0:1111, 2606:4700:4700:0:0:0:0:1001
+</div></section><section class="chapter"><h3 id="cloudflare-ipv4-block-malware" data-toc="cloudflare-ipv4-block-malware">Cloudflare IPv4 - Block malware</h3><div class="code-block" data-lang="shell">
+1.1.1.2, 1.0.0.2
+</div></section><section class="chapter"><h3 id="cloudflare-ipv6-block-malware" data-toc="cloudflare-ipv6-block-malware">Cloudflare IPv6 - Block malware</h3><div class="code-block" data-lang="shell">
+2606:4700:4700:0:0:0:0:1112, 2606:4700:4700:0:0:0:0:1002
+</div></section><section class="chapter"><h3 id="cloudflare-ipv4-block-malware-and-adult-content" data-toc="cloudflare-ipv4-block-malware-and-adult-content">Cloudflare IPv4&mdash;Block malware and adult content</h3><div class="code-block" data-lang="shell">
+1.1.1.3, 1.0.0.3
+</div></section><section class="chapter"><h3 id="cloudflare-ipv6-block-malware-and-adult-content" data-toc="cloudflare-ipv6-block-malware-and-adult-content">Cloudflare IPv6&mdash;Block malware and adult content</h3><div class="code-block" data-lang="shell">
+2606:4700:4700:0:0:0:0:1113, 2606:4700:4700:0:0:0:0:1003
+</div></section></section><section class="chapter"><h2 id="firewall-ufw" data-toc="firewall-ufw">FIREWALL UFW</h2><p id="z4gz5jo_22">UFW is a firewall configuration tool for iptables. UFW is a user-friendly way to create an IPv4 or IPv6 host-based firewall. By default, UFW is disabled.</p><section class="chapter"><h3 id="install-ufw-and-gui" data-toc="install-ufw-and-gui">Install UFW and GUI</h3><div class="code-block" data-lang="bash">
+sudo pacman -S --needed ufw gufw
+</div></section><section class="chapter"><h3 id="ufw-commands" data-toc="ufw-commands">UFW Commands</h3><div class="code-block" data-lang="bash">
+sudo ufw status numbered
+</div><div class="code-block" data-lang="bash">
+sudo ufw status verbose
+</div><div class="code-block" data-lang="bash">
+sudo ufw enable
+</div><div class="code-block" data-lang="bash">
+sudo ufw disable
+</div><div class="code-block" data-lang="bash">
+sudo ufw logging high
+</div></section><section class="chapter"><h3 id="ufw-rules" data-toc="ufw-rules">UFW Rules</h3><div class="code-block" data-lang="bash">
+sudo ufw default deny incoming
+</div><div class="code-block" data-lang="bash">
+sudo ufw default allow outgoing
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow http
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow https
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow log ssh
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow out log ssh
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow log ftp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow out log ftp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow log CIFS
+</div><section class="chapter"><h4 id="for-torrents" data-toc="for-torrents">For torrents</h4><div class="code-block" data-lang="bash">
+sudo ufw allow log 56881:56889/tcp
+</div></section><section class="chapter"><h4 id="for-steam" data-toc="for-steam">For Steam</h4><div class="code-block" data-lang="bash">
+sudo ufw allow 27000:27100/udp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 27031:27036/udp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 27036:27037/tcp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 4380/udp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 3478/udp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 4379/udp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 27014:27030/udp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 27015/tcp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 27015/udp
+</div></section><section class="chapter"><h4 id="kde-connect" data-toc="kde-connect">KDE-Connect</h4><div class="code-block" data-lang="bash">
+sudo ufw allow 1714:1764/udp
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow 1714:1764/tcp
+</div></section><section class="chapter"><h4 id="samba" data-toc="samba">Samba</h4><div class="code-block" data-lang="bash">
+sudo vim /etc/ufw/applications.d/samba
+</div><div class="code-block" data-lang="bash">
+[Samba]
+title=LanManager-like file and printer server for Unix
+description=The Samba software suite is a collection of programs that implements the SMB/CIFS protocol for unix systems, allowing you to serve files and printers to Windows, NT, OS/2 and DOS clients. This protocol is sometimes also referred to as the LanManager or NetBIOS protocol.
+ports=137,138/udp|139,445/tcp
+</div><div class="code-block" data-lang="bash">
+sudo ufw app update samba
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow log samba
+</div></section><section class="chapter"><h4 id="plex-media-server" data-toc="plex-media-server">Plex Media Server</h4><div class="code-block" data-lang="bash">
+sudo vim /etc/ufw/applications.d/plexmediaserver
+</div><div class="code-block" data-lang="bash">
+[plexmediaserver]
+title=Plex Media Server (Standard)
+description=The Plex Media Server
+ports=32400/tcp|3005/tcp|5353/udp|8324/tcp|32410:32414/udp
+
+[plexmediaserver-dlna]
+title=Plex Media Server (DLNA)
+description=The Plex Media Server (additional DLNA capability only)
+ports=1900/udp|32469/tcp
+
+[plexmediaserver-all]
+title=Plex Media Server (Standard + DLNA)
+description=The Plex Media Server (with additional DLNA capability)
+ports=32400/tcp|3005/tcp|5353/udp|8324/tcp|32410:32414/udp|1900/udp|32469/tcp
+</div><div class="code-block" data-lang="bash">
+sudo ufw app update plexmediaserver
+</div><div class="code-block" data-lang="bash">
+sudo ufw allow plexmediaserver-all
+</div><div class="code-block" data-lang="bash">
+sudo ufw reload
+</div></section></section><section class="chapter"><h3 id="get-the-list-of-applications" data-toc="get-the-list-of-applications">Get the list of applications</h3><div class="code-block" data-lang="bash">
+sudo ufw app list
+</div></section><section class="chapter"><h3 id="delete-rules" data-toc="delete-rules">Delete rules</h3><div class="code-block" data-lang="bash">
+sudo ufw delete [number]
+</div></section><section class="chapter"><h3 id="reset-ufw" data-toc="reset-ufw">Reset UFW</h3><div class="code-block" data-lang="bash">
+sudo ufw reset
+</div></section></section><div class="last-modified">Last modified: 06 August 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="home-servers.html" class="navigation-links__prev">Home Servers</a><a href="version-control.html" class="navigation-links__next">Version Control</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>
