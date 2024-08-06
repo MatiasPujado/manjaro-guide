@@ -1,5 +1,5 @@
 title: Manjaro Guide
 description: Knowledge base, meant to speed up my OS configuration.
-baseurl: ""
+baseurl: "/manjaro-guide"
 url: "https://matiaspujado.github.io"
 theme: jekyll-theme-cayman
