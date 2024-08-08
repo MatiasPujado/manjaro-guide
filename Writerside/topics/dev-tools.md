@@ -319,3 +319,23 @@ Try running a Docker command without `sudo`:
 ```Bash
 docker run hello-world
 ```
+
+## Linting {collapsible="true"}
+
+### ESLint
+
+```Bash
+sudo pacman -S --needed eslint
+```
+
+### Prettier
+
+```Bash
+sudo pacman -S --needed prettier prettyping
+```
+
+### Stylelint
+
+```Bash
+sudo pacman -S --needed stylelint
+```

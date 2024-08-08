@@ -20,5 +20,6 @@
   <toc-element topic="version-control.md"/>
   <toc-element topic="linux-kernel.md"/>
   <toc-element topic="solutions-archive.md"/>
+  <toc-element topic="local-ai.md"/>
   <toc-element topic="references.md"/>
 </instance-profile>

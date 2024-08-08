@@ -10,6 +10,7 @@
 
 - [Manjaro Wiki](https://wiki.manjaro.org/index.php/Main_Page)
 - [Manjaro Linux Forum](https://forum.manjaro.org/)
+- [Add Certificated](https://warlord0blog.wordpress.com/2021/01/17/trusting-ca-certificates-manjaro/)
 
 ### ZSH Plugins
 
@@ -158,6 +159,27 @@
 - [Git Tutorial](https://www.atlassian.com/git/tutorials)
 - [Git Dubious Ownership Error](https://confluence.atlassian.com/bbkb/git-command-returns-fatal-error-about-the-repository-being-owned-by-someone-else-1167744132.html)
 
-### Manjaro
+### Local AI
 
-- [Add Certificated](https://warlord0blog.wordpress.com/2021/01/17/trusting-ca-certificates-manjaro/)
+- [Local AI](https://en.wikipedia.org/wiki/Local_AI)
+- [ROCm Archlinux Wiki](https://wiki.archlinux.org/title/GPGPU#ROCm)
+- [ROCm Repo](https://github.com/rocm-arch/rocm-arch)
+
+#### LMStudio
+
+- [LMStudio](https://lmstudio.ai/)
+- [LMStudio Docs](https://lmstudio.ai/docs/welcome)
+- [LMStudio Repo](https://github.com/lmstudio-ai)
+
+#### Ollama
+
+- [Ollama](https://ollama.com/)
+- [Ollama Blog AMD](https://ollama.com/blog/amd-preview)
+- [Ollama Repo](https://github.com/ollama/ollama)
+- [Ollama Docs](https://github.com/ollama/ollama/tree/main/docs)
+
+#### Jan AI
+
+- [Jan AI](https://jana.ai/)
+- [Jan AI Docs](https://jan.ai/docs)
+- [Jan AI Repo](https://github.com/janhq/jan)

@@ -282,7 +282,7 @@ The installation process will start. It will take some time, so be patient. Once
 
 <br/>
 
-![Installing Manjaro](Manjaro_Installiing.png "Installing Manjaro")
+![Installing Manjaro](Manjaro_Installation.png "Installing Manjaro")
 
 <br/>
 
