@@ -2,11 +2,12 @@
 <!DOCTYPE instance-profile SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 <instance-profile id="mg"
                   name="Manjaro Guide"
-                  start-page="setup-system.md">
+                  start-page="intro.md">
+  <toc-element topic="intro.md"/>
   <toc-element topic="setup-system.md"/>
   <toc-element topic="first-steps.md"/>
-  <toc-element topic="setup-manjaro.md"/>
   <toc-element topic="terminal.md"/>
+  <toc-element topic="setup-manjaro.md"/>
   <toc-element topic="audio.md"/>
   <toc-element topic="gnome-extensions.md"/>
   <toc-element topic="utilities.md"/>

@@ -13,7 +13,7 @@ sudo pacman -S --needed lutris
 Heroic Games Launcher is an open-source alternative to the Epic Games Launcher. It allows you to install, configure, and launch games from the Epic Games Store.
 
 ```Bash
-yay -S heroic-games-launcher-bin
+yay -S --needed heroic-games-launcher-bin
 ```
 
 ## Steam
@@ -82,7 +82,7 @@ Proton is a compatibility layer that allows you to run Windows games on Linux. I
 #### Install ProtonUp-QT from AUR repository
 
 ```Bash
-yay -S protonup-qt
+yay -S --needed protonup-qt
 ```
 
 #### Install Protontricks from AUR repository
@@ -90,7 +90,7 @@ yay -S protonup-qt
 A simple wrapper that does winetricks things for Proton-enabled games.
 
 ```Bash
-yay -S protontricks
+yay -S --needed protontricks
 ```
 
 #### Install ProtonUp CLI
@@ -104,7 +104,7 @@ wget https://github.com/auyer/Protonup-rs/releases/latest/download/protonup-rs-l
 ProtonUp-NG from AUR repository:
 
 ```Bash
-yay -S protonup-ng-git
+yay -S --needed protonup-ng-git
 ```
 
 #### ProtonUp-NG using Python
