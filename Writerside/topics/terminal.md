@@ -81,7 +81,7 @@ sudo pacman -S --needed gnu-free-fonts ttf-carlito ttf-croscore ttf-dejavu ttf-d
 Install proprietary fonts:
 
 ```Bash
-yay -S ttf-ms-fonts
+yay -S --needed ttf-ms-fonts
 ```
 
 Source font recently installed:
@@ -162,16 +162,29 @@ sudo pacman -S --needed lsd
 sudo pacman -S --needed zsh-autosuggestions
 ```
 
+```Bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
 - zsh-syntax-highlighting
 
 ```Bash
 sudo pacman -S --needed zsh-syntax-highlighting
 ```
 
+```Bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
 - Fuzzy Finder
 
 ```Bash
-sudo pacman -S fzf
+sudo pacman -S --needed fzf
+```
+
+```Bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```
 
 - Zsh-interactive-cd
@@ -209,13 +222,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ```Bash
 plugins=(
   git
-  gitignore
   fzf
   zsh-autosuggestions
   zsh-interactive-cd
   zsh-syntax-highlighting
   docker
   docker-compose
+  ssh
+  gh
 )
 ```
 
@@ -252,9 +266,6 @@ export PATH=$PATH:$NPM_PACKAGES:"$NPM_PACKAGES/bin"
 export MANPATH=${MANPATH-$(manpath)}:"$NPM_PACKAGES/share/man"
 # export npm_config_prefix="$HOME/.local"
 
-#	Jetbrains
-export PATH=$PATH:"$HOME/.local/share/JetBrains/Toolbox/scripts"
-
 #	OBS-Studio
 export QT_QPA_PLATFORM=xcb,wayland
 
@@ -272,7 +283,11 @@ export PATH=$PATH:$HOME/.console-ninja/.bin
 # export WINEPREFIX=~/.wine32
 
 # Ruby - Jekyll
-export PATH=$PATH:/home/matias/.local/share/gem/ruby/3.0.0/bin
+export PATH=$PATH:$HOME/.rvm/bin
+export RUBIES=$HOME/.rvm/rubies
+export GEM_HOME=$RUBIES/ruby-3.2.0
+export PATH=$PATH:$GEM_HOME/bin
+export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 
 ###################################################################
 ```

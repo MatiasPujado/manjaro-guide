@@ -33,13 +33,14 @@ cat aur-pkglist | xargs -I {} pamac build {}
 ## Install important dependencies
 
 ```Bash
-sudo pacman -S --needed base-devel wget curl nano mercurial make hidapi dnsmasq vim dialog meson sane samba gawk lsp-plugins lsp-plugins-docs mda.lv2 calf qjournalctl yay qt5pas libappindicator-gtk3 openssh xorg-xhost smartmontools nvme-cli deja-dup zenity cmake gvfs qt5-wayland eog lib32-glibc alsa-lib gst-plugins-base-libs gtk2 libc++ libc++abi libidn11 libjpeg6-turbo libpng12 libsecret libsoup libvorbis libxaw libxp openssl speex webkit2gtk libc++ xerces-c apparmor qt5-svg git git-sizer git-repair git-revise git-filter-repo libva-vdpau-driver sndio v4l2loopback-dkms qt5-wayland qt6-wayland
+sudo pacman -S --needed base-devel wget curl nano mercurial make hidapi dnsmasq vim dialog meson sane samba gawk lsp-plugins lsp-plugins-docs mda.lv2 calf qjournalctl yay qt5pas libappindicator-gtk3 openssh xorg-xhost smartmontools nvme-cli deja-dup zenity cmake gvfs qt5-wayland eog lib32-glibc alsa-lib gst-plugins-base-libs gtk2 libc++ libc++abi libidn11 libjpeg6-turbo libpng12 libsecret libsoup libvorbis libxaw libxp openssl speex webkit2gtk libc++ xerces-c apparmor qt5-svg git git-sizer git-repair git-revise git-filter-repo libva-vdpau-driver sndio v4l2loopback-dkms qt5-wayland qt6-wayland shellcheck act actionlint
 ```
 
 ## Install essential utilities
 
 ```Bash
-sudo pacman -S --needed gparted grsync corectrl easyeffects font-manager shotwell terminator discord conky transmission-gtk frotz-ncurses bitwarden filezilla paperwork openshot gedit netstat-nat manjaro-pipewire pipewire-jack pipewire-v4l2 pipewire-docs realtime-privileges wireplumber tree vsftpd dconf-editor  zsh zsh-doc lsd awesome-terminal-fonts nerd-fonts tmux
+sudo pacman -S --needed gparted grsync corectrl easyeffects font-manager shotwell terminator discord conky transmission-gtk frotz-ncurses bitwarden filezilla paperwork openshot gedit netstat-nat 
+manjaro-pipewire pipewire-jack pipewire-v4l2 pipewire-docs realtime-privileges wireplumber tree vsftpd dconf-editor  zsh zsh-doc lsd awesome-terminal-fonts nerd-fonts tmux python-pyflakes python-dotenv
 ```
 
 ## TRIM (only on SSD)
@@ -62,7 +63,7 @@ systemctl status fstrim.timer
 sudo pacman -S --needed timeshift timeshift-autosnap-manjaro
 ```
 
-#### Enable autosnapshots
+#### Enable auto-snapshots
 
 Check the service status first:
 

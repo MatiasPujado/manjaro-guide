@@ -27,7 +27,7 @@ sudo brsaneconfig4 -a name=Brother model="DCP-1617NW" ip=192.168.100.150
 Use the following command to install Plex Media Server:
 
 ```Bash
-sudo yay -S plexmediaserver
+yay -S --needed plexmediaserver
 ```
 
 ### Add users to Plex group
