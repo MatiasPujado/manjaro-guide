@@ -38,12 +38,6 @@ Run speaker test:
 speaker-test -c2 -l3 -twav
 ```
 
-### Additional software
-
-```Bash
-sudo pacman -S carla
-```
-
 ## Codecs and multimedia dependencies
 
 ```Bash
