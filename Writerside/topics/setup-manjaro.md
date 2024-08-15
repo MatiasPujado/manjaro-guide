@@ -53,7 +53,7 @@ QT_QPA_PLATFORMTHEME="qt5ct"
 ## JAVA
 JAVA_HOME=/usr/lib/jvm/jdk1.8.0_411
 JRE_HOME=/usr/lib/jvm/jdk1.8.0_411/jre
-JAVAFX=/opt/javafx/jdk-17.0.11
+JAVAFX=/opt/javafx/javafx-sdk-17.0.11
 
 ## MAVEN
 MAVEN_HOME=/opt/apache-maven-3.9.8
@@ -80,11 +80,8 @@ LD_LIBRARY_PATH=$ORACLE_HOME/instantclient
 ## CITRIX
 ICAROOT=/opt/Citrix/ICAClient
 
-## VSCODE
-VSCODE_HOME=/opt/vscode/vscode_cli
-
 ## NODE
-NODE_HOME=$HOME/.config/nvm/versions/node/v18.20.3
+NODE_HOME=$HOME/.config/nvm/versions/node/v18.20.4
 
 ## ROCM
 ROCM_PATH=/opt/rocm

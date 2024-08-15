@@ -129,7 +129,7 @@ rm -rf ~/.virtualenvs/<environment-name>
 From the AUR, already configured for Manjaro (might be outdated):
 
 ```Bash
-yay -S amdfan
+yay -S --needed amdfan
 ```
 
 Install amdfan in a virtual environment and set it up:
@@ -157,7 +157,7 @@ Options:
 Paste the following content in /etc/amdfan.yml. This allows you to configure the settings before running it as a daemon.
 
 ```Bash
-sudo gedit /etc/amdfan.yml
+sudo vim /etc/amdfan.yml
 ```
 
 ```Bash
@@ -194,17 +194,17 @@ speed_matrix:
 Now we set up the systemd service:
 
 ```Bash
-sudo vim  /etc/systemd/system/amdfan.service
+sudo vim /usr/lib/systemd/system/amdfan.service
 ```
 
 ```Bash
 [Unit]
 Description=amdfan controller
-After=multi-user.target
 Requires=multi-user.target
 
 [Service]
 ExecStart=/usr/bin/amdfan daemon
+ExecReload=kill -HUP $MAINPID
 Restart=always
 
 [Install]
@@ -215,6 +215,12 @@ Confirm that it has been installed in `$HOME/.virtualenvs/amdfan/bin` and not in
 
 ```Bash
 which amdfan
+```
+
+Make all home directories executable by main group members:
+
+```Bash
+sudo chmod g+x /home/*
 ```
 
 If it is in '/usr/lib/bin', create a symbolic link to '/usr/bin':

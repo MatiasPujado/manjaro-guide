@@ -8,6 +8,112 @@ Here is a list of apps that I use daily. I will try to keep this list updated as
 sudo pacman -S --needed zathura zathura-cb zathura-djvu zathura-pdf-poppler zathura-ps
 ```
 
+`/etc/zathurarc`:
+
+```Bash
+#
+# 
+#   ███████  █████  ████████ ██   ██ ██    ██ ██████   █████  
+#      ███  ██   ██    ██    ██   ██ ██    ██ ██   ██ ██   ██ 
+#     ███   ███████    ██    ███████ ██    ██ ██████  ███████ 
+#    ███    ██   ██    ██    ██   ██ ██    ██ ██   ██ ██   ██ 
+#   ███████ ██   ██    ██    ██   ██  ██████  ██   ██ ██   ██ 
+#
+# 
+# Directory: /etc
+#
+##------ Mapping ------##
+
+map r reload
+map R rotate
+map p print
+map i recolor
+map J zoom out
+map K zoom in
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map l follow links
+map L display link target
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+
+##------ Document Settings -------##
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+set adjust-window "best-fit"
+
+set window-title-basename true
+
+# One page per row by default
+set pages-per-row 1
+set selection-clipboard clipboard
+
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set statusbar-basename true
+
+#zoom settings
+set zoom-min 10
+set sandbox none
+set page-padding 1
+
+set font "Ubuntu Nerd Font normal 10"
+
+
+##------ Theme ------##
+
+set recolor true
+
+set notification-error-bg       "#FC2929" 
+set notification-error-fg       "#18191E" 
+set notification-warning-bg     "#E25600" 
+set notification-warning-fg     "#18191E" 
+set notification-bg             "#00957A" 
+set notification-fg             "#18191E" 
+
+set completion-bg               "#18191E" 
+set completion-fg               "#44B273" 
+set completion-group-bg         "#18191E" 
+set completion-group-fg         "#ED722E" 
+set completion-highlight-bg     "#FFFF00" 
+set completion-highlight-fg     "#21252D" 
+
+set index-bg                    "#18191E" 
+set index-fg                    "#44B273" 
+set index-active-bg             "#21252D" 
+set index-active-fg             "#FFFF00" 
+
+set inputbar-bg                 "#21252D" 
+set inputbar-fg                 "#00957A" 
+set statusbar-bg                "#21252D" 
+set statusbar-fg                "#00957A" 
+
+set highlight-color             "#00614f" 
+set highlight-active-color      "#5fc7b4" 
+
+set default-bg                  "#18191E" 
+set default-fg                  "#C4B12C" 
+
+set render-loading              true
+set render-loading-fg           "#C4B12C" 
+set render-loading-bg           "#18191E" 
+
+# Recolor mode settings
+
+set recolor-lightcolor          "#21252D" 
+set recolor-darkcolor           "#FFFADE" 
+set recolor-colorspace          "rgb"
+```
+
 ## Web Browsers
 
 ```Bash
@@ -47,7 +153,7 @@ sudo pacman -S --needed spotify-launcher zenity
 ## AppImageLauncher
 
 ```Bash
-sudo pacman -S appimagelauncher
+sudo pacman -S --needed appimagelauncher
 ```
 
 ## VirtualBox
@@ -65,7 +171,7 @@ sudo pacman -S --needed obs-studio
 ## Screen Recorder
 
 ```Bash
-sudo pacman -S kooha
+sudo pacman -S --needed kooha
 ```
 
 ## Citrix Workspace {collapsible="true"}

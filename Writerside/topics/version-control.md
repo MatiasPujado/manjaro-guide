@@ -52,29 +52,36 @@ GitHub CLI brings GitHub to your terminal. It enables you to perform many of the
 Act is a tool that runs your GitHub Actions locally. It is a single binary that is straightforward to install and run.
 
 ```Bash
-sudo pacman -S --needed act actionlint shellcheck python-pyflakes python-dotenv github-cli ruby
+sudo pacman -S --needed github-cli
 ```
 
-#### Jekyll
+# Ruby
+
+Ruby is a dynamic, open-source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
+
+## RVM
+
+Install GPG keys:
+
+```Bash
+gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+```
+
+Install RVM:
+
+```Bash
+curl -sSL https://get.rvm.io | bash -s stable
+```
+
+Install Ruby:
+
+```Bash
+rvm install 3.2.0
+```
+
+## Jekyll
 
 Jekyll is a simple, blog-aware static site generator that is ideal for personal, project, or organization sites. It is written in Ruby and requires the RubyGems package manager.
-
-```Bash
-gem install jekyll bundler
-```
-
-Export to PATH:
-
-```Bash
-export PATH=$PATH:/home/matias/.local/share/gem/ruby/3.0.0/bin
-```
-
-Verify installed versions:
-
-```Bash
-jekyll -v
-bundler -v
-```
 
 At the root of the project create a `Gemfile` with the following content:
 
@@ -82,16 +89,56 @@ At the root of the project create a `Gemfile` with the following content:
 source 'https://rubygems.org'
 gem 'jekyll'
 gem 'bundler'
+gem 'json'
+gem 'jekyll-theme-cayman'
+gem 'html-proofer'
+gem 'ffi'
 ```
 
-Then run:
+Update RubyGems and Bundler, ensure that you have the latest versions of RubyGems and Bundler.
+Avoid using sudo when installing gems. If you encounter permission errors, you can use the `--user-install` flag.
+
+```Bash
+gem update --system
+gem install jekyll bundler
+```
+
+Clean the Bundler Environment, remove any existing `Gemfile.lock` file and clean the Bundler environment.
+
+```Bash
+rm -f Gemfile.lock
+bundle clean --force
+```
+
+Configure Bundler to install gems in a specific directory `vendor/bundle` within your project.
 
 ```Bash
 bundle config set --local path 'vendor/bundle'
+```
+
+Install Dependencies, reinstall the dependencies specified in your Gemfile.
+
+```Bash
 bundle install
 ```
 
-Avoid using sudo when installing gems. If you encounter permission errors, you can use the `--user-install` flag.
+Export to PATH in `.zshrc` or `.bashrc`:
+
+```Bash
+# Ruby - Jekyll
+export PATH=$PATH:$HOME/.rvm/bin
+export RUBIES=$HOME/.rvm/rubies
+export GEM_HOME=$RUBIES/ruby-3.2.0
+export PATH=$PATH:$GEM_HOME/bin
+export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
+```
+
+Verify Installation, check the installed versions of Jekyll and Bundler.
+
+```Bash
+jekyll -v
+bundler -v
+```
 
 Build the Jekyll site:
 

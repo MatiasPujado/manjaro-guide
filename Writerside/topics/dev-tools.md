@@ -97,7 +97,7 @@ sudo archlinux-java fix
 ## Kotlin {collapsible="true"}
 
 ```Bash
-sudo pacman -S kotlin ktlint
+sudo pacman -S --needed kotlin ktlint
 ```
 
 ## MySQL - MySQL Workbench {collapsible="true"}
@@ -258,7 +258,7 @@ sudo pacman -S --needed apache php libnotify phpmyadmin
 Install plug-ins:
 
 ```Bash
-sudo pacman -S php-apache php-cgi php-fpm php-gd php-embed php-intl php-redis php-snmp
+sudo pacman -S --needed php-apache php-cgi php-fpm php-gd php-embed php-intl php-redis php-snmp
 ```
 
 ## Docker {collapsible="true"}
